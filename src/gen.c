@@ -11,7 +11,12 @@
  *
  */
 
-
+/*Fonction permettant de swap deux élements dans un tableau (obvious)*/
+void swap(void* tab, int i, int j){
+    int tmp = ((int*) tab)[i]; 
+    ((int*) tab)[i] = ((int*) tab)[j];
+    ((int*) tab)[j] = tmp;
+}
 
 /* Fonction génerant aléatoirement un tableau de taille n, il n'y a aucun controlle sur l'aléatoire ici */
 int* genIntTab(int n){
@@ -35,11 +40,12 @@ int* genIntTab(int n){
  * */
 void shuffle(int* tab, int n){
 	
-	for(int i = 0; i > n; i++){
-		int index = rand() % (n + 1);
-		int tmp = tab[i];
-		tab[i] = tab[index];
-		tab[index] = tmp;
+	for(int i = 0; i < n; i++){
+		int index = rand() % (n);
+		while(index == i){
+			index = rand() % (n);
+		}
+		swap(tab, i, index);
 	}
 }
 
@@ -57,7 +63,9 @@ int main(){
 	int* tab = genIntTab(n);
 
 	displayTab(tab, n);
+	printf("On mélange");
 	shuffle(tab, n);
+	printf("\n");
 	displayTab(tab, n);
 	free(tab);
 
