@@ -2,6 +2,17 @@
 #include <stdlib.h>
 #include <time.h>
 
+/** Notes
+ *
+ * 4 Tailles de données : 100, 5_000, 100_000, 1_000_000 (int only)
+ * Chiffre géneré compris entre 0 et 10n
+ * Capable de génerer des int, double, float, char, char* (string)
+ * 4 type de tab : complètement rng, Quasi trié, quasi trié à l'envers, Déja trié sauf à la fin
+ *
+ */
+
+
+
 /* Fonction génerant aléatoirement un tableau de taille n, il n'y a aucun controlle sur l'aléatoire ici */
 int* genIntTab(int n){
 
