@@ -39,7 +39,9 @@ int* genIntTab(int n){
 	return res;
 	
 }
-/*
+/**
+ * Proc à 0 -> Tableau trié
+ */
 int* genIntTabControlled(int n, double proc){
 
 	int* res = malloc(sizeof(int) * n);
@@ -47,16 +49,17 @@ int* genIntTabControlled(int n, double proc){
 		res[i] = i;
 	}
 
-	for(int i = 0; i < n; i++){
-		double rng = rand()/ RAND_MAX;
-		if(rng >= proc){
-			int index = rand()
+	for(int i = 0; i < n-1; i++){
+		double rng = randomDouble(0,1);
+		if(rng < proc){
+			int index = randomInt(i, n-1);
+			swap(res, i, index);
 		}
 	}
 
 	return res;
 }
-*/
+
 
 double* genDoubleTab(int n){
 
@@ -158,19 +161,16 @@ void displayTab(void* tab, int n, int idType){
 int main(){
     srand(time(NULL));
 
-	int n = 10;
-	double* tab = genDoubleTab(n);
+	int n = 20;
+	int* tab = genIntTabControlled(n, 0.8);
 	
 	/*
 	displayTab(tab, n);
 	shuffle(tab, n);
 	*/
-	//displayTab(tab, n, 3);
-	
+	displayTab(tab, n, 0);
 	free(tab);
-	while(1){
-		printf("%d\n", randomInt(0,10));
-	}
+
 
 
 
