@@ -2,14 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-/** Notes
- *
- * 4 Tailles de données : 100, 5_000, 100_000, 1_000_000 (int only)
- * Chiffre géneré compris entre 0 et 10n
- * Capable de génerer des int, double, char, char* (string)
- * 4 type de tab : complètement rng, Quasi trié, quasi trié à l'envers, Déja trié sauf à la fin
- *
- */
+
 
 /* Fonction permettant de swap deux élements dans un tableau (obvious) */
 void swap(void* tab, int i, int j){
@@ -19,28 +12,71 @@ void swap(void* tab, int i, int j){
 
 }
 
+double randomDouble(int min, int max){
+
+	double res = (double)rand()/RAND_MAX * (max - min) + min;
+	return res;
+
+}
+
+int randomInt(int min, int max){
+
+	int res = rand() % (max - min + 1) + min;
+	return res;
+}
+
+
+
 /* Fonction génerant aléatoirement un tableau de taille n, il n'y a aucun controlle sur l'aléatoire ici */
 int* genIntTab(int n){
 
 
 	int* res = malloc(sizeof(int)*n);
 	for(int i = 0; i < n; i++){
-		res[i] = rand() % (10*n + 1);
+		res[i] = randomInt(0, 10*n);
 	}
 
 	return res;
 	
 }
+/*
+int* genIntTabControlled(int n, double proc){
 
-double* genDoubleTab(int n){
-
-	double* res = malloc(sizeof(double)*n);
+	int* res = malloc(sizeof(int) * n);
 	for(int i = 0; i < n; i++){
-		res[i] = ((double)rand() / RAND_MAX) * 10 * n;
+		res[i] = i;
+	}
+
+	for(int i = 0; i < n; i++){
+		double rng = rand()/ RAND_MAX;
+		if(rng >= proc){
+			int index = rand()
+		}
 	}
 
 	return res;
 }
+*/
+
+double* genDoubleTab(int n){
+
+	double* res = malloc(sizeof(double) * n);
+	for(int i = 0; i < n; i++){
+		res[i] = randomDouble(0, 10 * n);
+	}
+
+	return res;
+}
+
+/*
+char* genCharTab(int n ){
+
+	char* res = malloc(sizeof(char) * n);
+	for(int i = 0; i < n; i++){
+		res[i] = rand() % (10*n + 1); //A MODIF
+	}
+}
+*/
 
 /* 
  * Mélange le tableau donnée en entrée
@@ -74,13 +110,20 @@ void displayDoubleTab(double* tab, int n){
 
 }
 
+void displayCharTab(char* tab, int n){
+
+	for(int i = 0; i < n; i++){
+		printf("Index %d : %s\n", i, tab[i]);
+	}
+}
+
 /**
  * Permet d'afficher de manière génerique les différents tableaux, la liste des Id est la suivante :
  * 
  * 0 - int
  * 1 - double/float
  * 2 - Char
- * 3 - String
+ * 3 - String (tab de String plus précisement)
  */
 void displayTab(void* tab, int n, int idType){
 
@@ -93,11 +136,11 @@ void displayTab(void* tab, int n, int idType){
 			displayDoubleTab((double*) tab, n);
 			break;
 
-		/*
+		
 		case 2:
 			displayCharTab((char*) tab, n);
 			break;
-
+		/*
 		case 3:
 			displayStrTab((char**) tab, n);
 			break;
@@ -122,8 +165,12 @@ int main(){
 	displayTab(tab, n);
 	shuffle(tab, n);
 	*/
-	displayTab(tab, n, 1);
+	//displayTab(tab, n, 3);
+	
 	free(tab);
+	while(1){
+		printf("%d\n", randomInt(0,10));
+	}
 
 
 
