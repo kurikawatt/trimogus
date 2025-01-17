@@ -2,6 +2,11 @@
 #include <stdlib.h>
 #include <time.h>
 
+typedef struct personne_s{ //Il doit manquer un ptr quelque part
+	char[32] nom;
+	char[32] prenom;
+	int age;
+} personne_t;
 
 
 /* Fonction permettant de swap deux élements dans un tableau (obvious) */
@@ -80,7 +85,7 @@ char* genCharTab(int n ){
 */
 
 /**
- * Génère un tableau de String de taille 32 max
+ * Génère un tableau de String de taille 32 max TODO: Rajouter la gen des mots
  */
 char** genStringTab(int n){
 
@@ -176,6 +181,7 @@ void displayTab(void* tab, int n, int idType){
 }
 
 int main(){
+
     srand(time(NULL));
 
 	int n = 5;
