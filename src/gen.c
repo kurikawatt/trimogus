@@ -25,8 +25,6 @@ int randomInt(int min, int max){
 	return res;
 }
 
-
-
 /* Fonction génerant aléatoirement un tableau de taille n, il n'y a aucun controlle sur l'aléatoire ici */
 int* genIntTab(int n){
 
@@ -39,8 +37,9 @@ int* genIntTab(int n){
 	return res;
 	
 }
+
 /**
- * Proc à 0 -> Tableau trié
+ * arg "proc" == 0 -> Tableau trié
  */
 int* genIntTabControlled(int n, double proc){
 
@@ -59,7 +58,6 @@ int* genIntTabControlled(int n, double proc){
 
 	return res;
 }
-
 
 double* genDoubleTab(int n){
 
@@ -80,6 +78,31 @@ char* genCharTab(int n ){
 	}
 }
 */
+
+char** genStringTab(int n){
+
+	char** res = malloc(sizeof(char[32]) * n);
+
+	res[0] = "oui";
+	res[1] = "non";
+	res[2] = "oskour";
+	res[3] = "Peut etre ?";
+	res[4] = "Buster Wolf";
+
+	return res;
+}
+
+/**
+ * Gère la libération de mémoire d'un tableau de string (cas un peu particulier)
+ */
+void freeStringTab(char** tab, int n){
+
+	for(int i = 0; i < n; i++){
+		free(tab[i]);
+	}
+
+	free(tab);
+}
 
 /* 
  * Mélange le tableau donnée en entrée
@@ -116,6 +139,13 @@ void displayDoubleTab(double* tab, int n){
 void displayCharTab(char* tab, int n){
 
 	for(int i = 0; i < n; i++){
+		printf("Index %d : %c\n", i, tab[i]);
+	}
+}
+
+void displayStringTab(char** tab, int n){
+
+	for(int i = 0; i < n; i++){
 		printf("Index %d : %s\n", i, tab[i]);
 	}
 }
@@ -143,11 +173,10 @@ void displayTab(void* tab, int n, int idType){
 		case 2:
 			displayCharTab((char*) tab, n);
 			break;
-		/*
+		
 		case 3:
-			displayStrTab((char**) tab, n);
+			displayStringTab((char**) tab, n);
 			break;
-		*/
 
 		default:
 			printf("Erreur : Le type spécifié n'est pas pris en charge");
@@ -161,16 +190,15 @@ void displayTab(void* tab, int n, int idType){
 int main(){
     srand(time(NULL));
 
-	int n = 20;
-	int* tab = genIntTabControlled(n, 0.8);
+	int n = 5;
+	char** tab = genStringTab(n);
 	
 	/*
 	displayTab(tab, n);
 	shuffle(tab, n);
 	*/
-	displayTab(tab, n, 0);
+	displayTab(tab, n, 3);
 	free(tab);
-
 
 
 
