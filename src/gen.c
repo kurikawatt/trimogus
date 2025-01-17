@@ -95,18 +95,6 @@ char** genStringTab(int n){
 	return res;
 }
 
-/**
- * Gère la libération de mémoire d'un tableau de string (cas un peu particulier)
- */
-void freeStringTab(char** tab, int n){
-
-	for(int i = 0; i < n; i++){
-		free(tab[i]);
-	}
-
-	free(tab);
-}
-
 /* 
  * Mélange le tableau donnée en entrée
  * Complexite en Temps : O(n)
