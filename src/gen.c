@@ -3,8 +3,8 @@
 #include <time.h>
 
 typedef struct personne_s{ //Il doit manquer un ptr quelque part
-	char[32] nom;
-	char[32] prenom;
+	char nom[32];
+	char prenom[32];
 	int age;
 } personne_t;
 
