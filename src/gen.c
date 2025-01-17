@@ -79,6 +79,9 @@ char* genCharTab(int n ){
 }
 */
 
+/**
+ * Génère un tableau de String de taille 32 max
+ */
 char** genStringTab(int n){
 
 	char** res = malloc(sizeof(char[32]) * n);
@@ -184,9 +187,6 @@ void displayTab(void* tab, int n, int idType){
 	}
 }
 
-
-
-
 int main(){
     srand(time(NULL));
 
@@ -197,6 +197,7 @@ int main(){
 	displayTab(tab, n);
 	shuffle(tab, n);
 	*/
+
 	displayTab(tab, n, 3);
 	free(tab);
 
