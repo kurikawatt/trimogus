@@ -90,13 +90,25 @@ char* genCharTab(int n ){
 char** genStringTab(int n){
 
 	char** res = malloc(sizeof(char[32]) * n);
-
-	res[0] = "oui";
-	res[1] = "non";
-	res[2] = "oskour";
-	res[3] = "Peut etre ?";
-	res[4] = "Buster Wolf";
-
+	FILE* file = fopen("wordsFile.txt", "r");
+	if(file == NULL){
+		printf("Erreur : le fichier de mots n'existe pas");
+		exit(EXIT_FAILURE);
+	}
+	char test[32];
+	for(int i = 0; i < n; i++){
+		int nbSkip = randomInt(0,9848);
+		fgets(test, 32, file);
+		
+		/*
+		for(int j = 0; j < nbSkip; j++){
+			fgets(test, 32, file);
+		}
+		*/
+	}
+	
+	fclose(file);
+	printf("%s\n", test);
 	return res;
 }
 
