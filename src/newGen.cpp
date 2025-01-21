@@ -113,6 +113,30 @@ vector<char> genCharArray(int n){
 	return res;
 }
 
+vector<string> genStringArray(int n){
+
+	vector<string> res;
+	vector<string> stringTab;
+	//Obtention de la taille du fichier
+	int sizeStringTab = 0;
+	string ligne;
+	ifstream file("words.txt");
+	while (getline (file, ligne)) {
+		stringTab.push_back(ligne);
+		sizeStringTab++;
+	}
+	file.close();
+
+	//Remplissage du tableau
+	for(int i = 0; i < n; i++){
+		int randomIndex = randomInt(0, sizeStringTab-1);
+		res.push_back(stringTab[randomIndex]);
+	}
+
+	res.shrink_to_fit();
+	return res;
+}
+
 int main(){
 
 	srand(time(NULL));
