@@ -9,3 +9,6 @@ bool is_vector_sorted(vector<T> vec, bool reversed){
     }
     return true;
 };
+
+// Un fix qui fonctionne, me demandez pas comment
+template bool is_vector_sorted<int>(vector<int> vec, bool reversed);

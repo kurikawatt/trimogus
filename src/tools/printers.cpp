@@ -15,3 +15,7 @@ void print_vector(vector<T> vec, string separator){
     }
     cout << endl;
 };
+
+// Un fix qui fonctionne, me demandez pas comment
+template void print_array<int>(int arr[], size_t size, string separator);
+template void print_vector<int>(vector<int> vec, string separator);
