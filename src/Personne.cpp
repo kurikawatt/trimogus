@@ -32,6 +32,14 @@ class Personne{
 			this->nom = nomInput;
 		}
 
+		void setPrenom(string prenomInput){
+			this->prenom = prenomInput;
+		}
+
+		void setAge(int ageInput){
+			this->age = ageInput;
+		}
+
 		bool operator == (const Personne& other){
 			return (this->age == other.age) && (this->prenom == other.prenom) && (this->nom == other.nom);
 		}
