@@ -120,7 +120,7 @@ vector<string> genStringArray(int n){
 	//Obtention de la taille du fichier
 	int sizeStringTab = 0;
 	string ligne;
-	ifstream file("words.txt");
+	ifstream file("wordsFile.txt");
 	while (getline (file, ligne)) {
 		stringTab.push_back(ligne);
 		sizeStringTab++;
@@ -141,7 +141,7 @@ int main(){
 
 	srand(time(NULL));
 
-    vector<char> myVector = genCharArray(100);
-	displayArray(myVector);
+	vector<int> myVector = genIntArray(1000000);
+	//displayArray(myVector);
 
 }
