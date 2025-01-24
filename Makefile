@@ -14,10 +14,18 @@ prepare:
 clean:
 	rm -r $(BUILD_DIR)
 
-build: prepare
-	$(COMPILATOR) -I $(SRC_DIR) $(SRC_DIR)/main.cpp -o $(BIN_DIR)/$(BIN_NAME)
+generators: prepare
+	g++ -I $(SRC_DIR) -c $(SRC_DIR)/generators/*.cpp
+	mv *.o $(BUILD_DIR)/
 
-build_debug: prepare
-	$(COMPILATOR) -I $(SRC_DIR) $(SRC_DIR)/main.cpp -g3 -o $(BIN_DIR)/$(BIN_NAME)_debug
+tools: prepare
+	g++ -I $(SRC_DIR) -c $(SRC_DIR)/tools/*.cpp
+	mv *.o $(BUILD_DIR)/
+
+build: generators tools
+	$(COMPILATOR) -I $(SRC_DIR) $(SRC_DIR)/main.cpp $(BUILD_DIR)/*.o -o $(BIN_DIR)/$(BIN_NAME)
+
+build_debug: generators tools
+	$(COMPILATOR) -I $(SRC_DIR) $(SRC_DIR)/main.cpp $(BUILD_DIR)/*.o -o $(BIN_DIR)/$(BIN_NAME)_debug
 
 .PHONY: build build_debug
