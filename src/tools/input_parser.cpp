@@ -1,4 +1,4 @@
-#include "tools/data_type_parser.h"
+#include "tools/input_parser.h"
 
 int which_type(string data_type){
     if (data_type == "int") return 1;
