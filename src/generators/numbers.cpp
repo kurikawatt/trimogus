@@ -1,6 +1,5 @@
 #include "generators/numbers.h"
 
-
 int random_int(int a, int b){
     return (rand() % (b - a)) + a;
 }
