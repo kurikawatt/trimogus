@@ -1,0 +1,38 @@
+#include "generators/numbers.h"
+
+
+int random_int(int a, int b){
+    return (rand() % (b - a)) + a;
+}
+
+float random_float(float a, float b){
+    return (float) rand() / RAND_MAX * (b - a) + a;
+}
+
+double random_double(double a, double b){
+    return (double) rand() / RAND_MAX * (b - a) + a;
+}
+
+vector<int> random_int_vector(size_t size, int a, int b){
+    vector<int> v;
+    for(int i = 0; i < size; i++){
+        v.push_back(random_int(a,b));
+    }
+    return v;
+}
+
+vector<float> random_float_vector(size_t size, float a, float b){
+    vector<float> v;
+    for(int i = 0; i < size; i++){
+        v.push_back(random_float(a,b));
+    }
+    return v;
+}
+
+vector<double> random_double_vector(size_t size, double a, double b){
+    vector<double> v;
+    for(int i = 0; i < size; i++){
+        v.push_back(random_double(a,b));
+    }
+    return v;
+}
