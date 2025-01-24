@@ -22,7 +22,7 @@ void bench(int algo, int type, size_t size){
     {
     case 1:
         cout << "Application du tri sélection..." << endl;
-        selection_sort(v);
+        selection_sort<int>(v);
         break;
     
     default:

@@ -4,12 +4,12 @@
 #include "tools/swap.h"
 
 template <typename T>
-void selection_sort(vector<T> *vec){
+void selection_sort(vector<T> &vec){
     int min_index;
-    for (int i = 0; i < vec->size()-1; i++){
+    for (int i = 0; i < vec.size()-1; i++){
         min_index = i;
-        for (int j = i+1; j < vec->size(); j++){
-            if ((*vec)[j] < (*vec)[min_index]){
+        for (int j = i+1; j < vec.size(); j++){
+            if (vec[j] < vec[min_index]){
                 min_index = j;
             }
         }
