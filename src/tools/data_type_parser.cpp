@@ -1,6 +1,6 @@
 #include "tools/data_type_parser.h"
 
-int which_data_type(string data_type){
+int which_type(string data_type){
     if (data_type == "int") return 1;
     if (data_type == "float") return 2;
     if (data_type == "double") return 3;
