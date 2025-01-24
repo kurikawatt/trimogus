@@ -47,19 +47,21 @@ int main(int argc, char *argv[]){
         }
     }
     
-    if (algo_name.empty() || data_type.empty() || path_to_words_file.empty() || vec_size == -1) {
+    if (algo_name.empty() || data_type.empty() || vec_size == -1) {
         cerr << "Erreur: Vous devez fournir des arguments." << endl;
         return 1;
     }
 
-    switch (which_type(data_type))
-    {
-    case 1:
-        bench<int>(which_algo(algo_name), which_type(data_type), vec_size);
-        break;
-    
-    default:
-        break;
+    int type = which_type(data_type);
+    int algo = which_algo(algo_name);
+
+    switch (type) {
+        case 1:
+            bench<int>(algo, type, vec_size);
+            break;
+        
+        default:
+            break;
     }
 
     return 0;
