@@ -136,12 +136,3 @@ vector<string> genStringArray(int n){
 	res.shrink_to_fit();
 	return res;
 }
-
-int main(){
-
-	srand(time(NULL));
-
-	vector<int> myVector = genIntArray(1000000);
-	//displayArray(myVector);
-
-}
