@@ -8,7 +8,7 @@
 using namespace std;
 
 template <typename T>
-void knuth_shuffle(vector<T> vec){
+void knuth_shuffle(vector<T> &vec){
     int j;
     for (int i = 0; i < vec.size(); i++){
         j = random_int(0, vec.size()-1);
