@@ -11,5 +11,6 @@ int which_type(string data_type){
 
 int which_algo(string algo_name){
     if (algo_name == "selection") return 1;
+    if (algo_name == "stupide") return 2;
     return 0;
 }

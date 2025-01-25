@@ -5,7 +5,7 @@
 
 #include "generators/generate_vec.h"
 #include "tools/printers.h"
-#include "sorts/selection.h"
+#include "sorts/sorts.h"
 #include "tools/checkers.h"
 
 using namespace std;
@@ -22,9 +22,12 @@ void bench(int algo, int type, size_t size){
     {
     case 1:
         cout << "Application du tri sélection..." << endl;
-        selection_sort<int>(v);
+        selection_sort<T>(v);
         break;
-    
+    case 2:
+        cout << "Application du tri stupide..." << endl;
+        bogosort<T>(v);
+        break;
     default:
         break;
     }
