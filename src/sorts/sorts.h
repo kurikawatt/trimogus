@@ -9,3 +9,5 @@
 
 #include "sorts/selection.h"
 #include "sorts/bogosort.h"
+#include "sorts/insertion.h"
+#include "sorts/quicksort.h"
