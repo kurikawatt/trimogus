@@ -42,35 +42,35 @@ class Person{
 			this->age = age;
 		}
 
-		bool operator == (const Person *other){
-			return (this->lastname == (*other).lastname) 
-					&& (this->firstname == (*other).firstname)
-					&& (this->age == (*other).age);
+		bool operator == (const Person &other){
+			return (this->lastname == other.lastname) 
+					&& (this->firstname == other.firstname)
+					&& (this->age == other.age);
 		}
 	
-        bool operator < (const Person *other){
-			if(!(this->lastname == (*other).lastname)){  
-				return this->lastname < (*other).lastname;
+        bool operator < (const Person &other){
+			if(!(this->lastname == other.lastname)){  
+				return this->lastname < other.lastname;
 			}
-			if(!(this->firstname == (*other).firstname)){
-				return this->firstname < (*other).firstname;
+			if(!(this->firstname == other.firstname)){
+				return this->firstname < other.firstname;
 			}
-			if(!(this->age == (*other).age)){
-				return this->age < (*other).age;
+			if(!(this->age == other.age)){
+				return this->age < other.age;
 			}
 			//Les deux personnes ont le même nom, prénom et age, ils ne sont donc pas différents
 			return false; 
         }
 
-		bool operator < (const Person *other){
-			if(!(this->lastname == (*other).lastname)){  
-				return this->lastname > (*other).lastname;
+		bool operator < (const Person &other){
+			if(!(this->lastname == other.lastname)){  
+				return this->lastname > other.lastname;
 			}
-			if(!(this->firstname == (*other).firstname)){
-				return this->firstname > (*other).firstname;
+			if(!(this->firstname == other.firstname)){
+				return this->firstname > other.firstname;
 			}
-			if(!(this->age == (*other).age)){
-				return this->age > (*other).age;
+			if(!(this->age == other.age)){
+				return this->age > other.age;
 			}
 			//Les deux personnes ont le même nom, prénom et age, ils ne sont donc pas différents
 			return false; 

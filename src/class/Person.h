@@ -19,8 +19,8 @@ class Person{
         void set_firstname(string firstname); 
         void set_age(int age);
 
-        bool operator == (const Person *other);
-        bool operator < (const Person *other);
-        bool operator > (const Person *other);
+        bool operator == (const Person &other);
+        bool operator < (const Person &other);
+        bool operator > (const Person &other);
 
 };
