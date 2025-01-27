@@ -5,7 +5,7 @@
 using namespace std;
 
 template <typename T>
-void insertion(vector<T>& tab){
+void insertion_sort(vector<T>& tab){
     
     for (size_t i = 0; i < tab.size(); i++){
         T k = tab[i];

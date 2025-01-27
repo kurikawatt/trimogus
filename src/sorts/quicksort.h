@@ -21,11 +21,11 @@ int partition(vector<T>& arr, int low, int high) {
 }
 
 template <typename T>
-void quickSort(vector<T>& arr, int low, int high) {
+void quick_sort(vector<T>& arr, int low, int high) {
   
     if (low < high) {
         int pi = partition(arr, low, high);
-        quickSort(arr, low, pi - 1);
-        quickSort(arr, pi + 1, high);
+        quick_sort(arr, low, pi - 1);
+        quick_sort(arr, pi + 1, high);
     }
 }

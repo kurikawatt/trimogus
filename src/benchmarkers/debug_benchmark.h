@@ -28,7 +28,14 @@ void bench(int algo, int type, size_t size){
         cout << "Application du tri stupide..." << endl;
         bogosort<T>(v);
         break;
+    case 3:
+        cout << "Application du tri insertion..." << endl;
+        insertion_sort<T>(v);
+    case 4:
+        cout << "Application du tri rapide..." << endl;
+        quick_sort<T>(v, 0, size);
     default:
+        exit(0);
         break;
     }
 
