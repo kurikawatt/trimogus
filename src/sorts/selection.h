@@ -3,6 +3,8 @@
 #include <vector>
 #include "tools/swap.h"
 
+#include "sorts/probe.h"
+
 template <typename T>
 void selection_sort(vector<T> &vec){
 

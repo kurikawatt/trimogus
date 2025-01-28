@@ -4,6 +4,7 @@
 
 #include "tools/shufflers.h"
 #include "tools/checkers.h"
+#include "sorts/probe.h"
 
 using namespace std;
 

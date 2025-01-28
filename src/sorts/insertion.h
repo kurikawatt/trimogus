@@ -2,6 +2,8 @@
 
 #include <vector>
 
+#include "sorts/probe.h"
+
 using namespace std;
 
 template <typename T>

@@ -14,10 +14,10 @@ template <typename T>
 void bench(int algo, int type, size_t size){
 
 	vector<T> v = generate_vector<T>(type, size);
-    
+    /*
     cout << "Voici le tableau généré : " << endl;
     print_vector(v);
-
+    */
     switch (algo)
     {
     case 1:
@@ -40,10 +40,13 @@ void bench(int algo, int type, size_t size){
         exit(0);
         break;
     }
-
+    /*
     cout << "Voici le tableau trié : " << endl;
     print_vector(v);
-
+    */
     cout << "-> Est-il trié dans l'ordre croissant ? " << is_vector_sorted(v) << endl;
+    cout << "-> Nombre de comparaison: " << __COMPARISION_COUNT__ << endl;
+    cout << "-> Nombre d'échanges (swap): " << __SWAP_COUNT__ << endl;
+
 
 }
