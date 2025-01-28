@@ -46,4 +46,19 @@ int main(){
 
     cout << "Est ce que la distribution est uniforme pour la géneration de chiffre flottants ? : " << (khi_deux < CRITICAL ) << endl;
 
+    //Test pour double
+    //Création du tableau & remplissage
+    double distrib_double[RANGE] = {0.0};
+    for(int i = 0; i < SAMPLE; i++){
+        distrib_double  [(int) floor(random_double(0, RANGE))]++; //DEGEUX, PEUT PLANTER
+    }
+
+    //Etude statistiques
+    khi_deux = 0;
+    for(int i = 0; i < RANGE; i++){
+        khi_deux += ((distrib_double[i] - EXPECTED_PROB) * (distrib_double[i] - EXPECTED_PROB)) / EXPECTED_PROB;
+    }
+
+    cout << "Est ce que la distribution est uniforme pour la géneration de chiffre double ? : " << (khi_deux < CRITICAL ) << endl;
+
 }
