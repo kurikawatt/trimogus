@@ -18,18 +18,19 @@ int main(){
 
     //Test pour Int
     //Création du tableau & remplissage
-    int distrib[RANGE] = {0};
+    int distrib_int[RANGE] = {0};
     for(int i = 0; i < SAMPLE; i++){
-        distrib[random_int(0,RANGE-1)]++;
+        distrib_int[random_int(0,RANGE-1)]++;
     }
 
     //Etude statistiques
     double khi_deux = 0;
     for(int i = 0; i < RANGE; i++){
-        khi_deux += ((distrib[i] - EXPECTED_PROB) * (distrib[i] - EXPECTED_PROB)) / EXPECTED_PROB;
+        khi_deux += ((distrib_int[i] - EXPECTED_PROB) * (distrib_int[i] - EXPECTED_PROB)) / EXPECTED_PROB;
     }
 
     cout << "Est ce que la distribution est uniforme pour la géneration de chiffre entiers ? : " << (khi_deux < CRITICAL ) << endl;
 
     //Test pour float
+
 }
