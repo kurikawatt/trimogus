@@ -1,7 +1,7 @@
 #include "generators/numbers.h"
 
 int random_int(int a, int b){
-    return rand() % (b - a) + a;
+    return rand() % (b - a + 1) + a;
 }
 
 float random_float(float a, float b){
