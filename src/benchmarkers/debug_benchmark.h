@@ -16,10 +16,8 @@ template <typename T>
 void bench(int algo, int type, size_t size){
 
 	vector<T> v = generate_vector<T>(type, size);
-    /*
     cout << "Voici le tableau généré : " << endl;
     print_vector(v);
-    */
     auto start = high_resolution_clock::now();
     switch (algo)
     {
@@ -39,16 +37,18 @@ void bench(int algo, int type, size_t size){
         cout << "Application du tri rapide..." << endl;
         quick_sort<T>(v, 0, size);
         break;
+    case 5:
+        cout << "Application du tri à bulle..." << endl;
+        bublesort(v);
+        break;
     default:
         exit(0);
         break;
     }
     auto end = high_resolution_clock::now();
     auto duration = duration_cast<seconds>(end - start);
-    /*
     cout << "Voici le tableau trié : " << endl;
     print_vector(v);
-    */
     cout << "-> Taille du tableau: " << size << endl;
     cout << "-> Est-il trié dans l'ordre croissant ? " << is_vector_sorted(v) << endl;
     cout << "-> Temps d'exécution: " << duration.count() << "s" << endl;  

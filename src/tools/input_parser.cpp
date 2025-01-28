@@ -14,5 +14,6 @@ int which_algo(string algo_name){
     if (algo_name == "stupide") return 2;
     if (algo_name == "insertion") return 3;
     if (algo_name == "rapide") return 4;
+    if (algo_name == "bulle") return 5;
     return 0;
 }

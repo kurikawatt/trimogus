@@ -11,3 +11,4 @@
 #include "sorts/bogosort.h"
 #include "sorts/insertion.h"
 #include "sorts/quicksort.h"
+#include "sorts/bublesort.h"
