@@ -4,4 +4,4 @@
 
 #pragma once
 
-int __COMPARISION_COUNT__;
+long long int __COMPARISION_COUNT__;

@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int __SWAP_COUNT__ = 0;
+long long int __SWAP_COUNT__ = 0;
 
 template <typename T> void swap(vector<T> &vec, unsigned int i, unsigned int j){
     __SWAP_COUNT__++;
