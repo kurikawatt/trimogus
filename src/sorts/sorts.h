@@ -11,3 +11,5 @@
 #include "sorts/bogosort.h"
 #include "sorts/insertion.h"
 #include "sorts/quicksort.h"
+
+int __COMPARISION_COUNT__;
