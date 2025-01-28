@@ -32,17 +32,18 @@ int main(){
     cout << "Est ce que la distribution est uniforme pour la géneration de chiffre entiers ? : " << (khi_deux < CRITICAL ) << endl;
 
     //Test pour float
+    //Création du tableau & remplissage
     float distrib_float[RANGE] = {0.0};
     for(int i = 0; i < SAMPLE; i++){
         distrib_float[(int) floor(random_float(0, RANGE))]++; //DEGEUX, PEUT PLANTER
     }
 
+    //Etude statistiques
     khi_deux = 0;
     for(int i = 0; i < RANGE; i++){
         khi_deux += ((distrib_float[i] - EXPECTED_PROB) * (distrib_float[i] - EXPECTED_PROB)) / EXPECTED_PROB;
     }
 
-    cout << khi_deux << endl;
     cout << "Est ce que la distribution est uniforme pour la géneration de chiffre flottants ? : " << (khi_deux < CRITICAL ) << endl;
 
 }
