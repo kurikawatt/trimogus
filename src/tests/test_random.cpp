@@ -29,6 +29,7 @@ int main(){
         khi_deux += ((distrib_int[i] - EXPECTED_PROB) * (distrib_int[i] - EXPECTED_PROB)) / EXPECTED_PROB;
     }
 
+    cout << "Valeur du khi-deux obtenue : " << khi_deux << endl; 
     cout << "Est ce que la distribution est uniforme pour la géneration de chiffre entiers ? : " << (khi_deux < CRITICAL ) << endl;
 
     //Test pour float
@@ -44,6 +45,7 @@ int main(){
         khi_deux += ((distrib_float[i] - EXPECTED_PROB) * (distrib_float[i] - EXPECTED_PROB)) / EXPECTED_PROB;
     }
 
+    cout << "Valeur du khi-deux obtenue : " << khi_deux << endl; 
     cout << "Est ce que la distribution est uniforme pour la géneration de chiffre flottants ? : " << (khi_deux < CRITICAL ) << endl;
 
     //Test pour double
@@ -58,7 +60,8 @@ int main(){
     for(int i = 0; i < RANGE; i++){
         khi_deux += ((distrib_double[i] - EXPECTED_PROB) * (distrib_double[i] - EXPECTED_PROB)) / EXPECTED_PROB;
     }
-
+    
+    cout << "Valeur du khi-deux obtenue : " << khi_deux << endl; 
     cout << "Est ce que la distribution est uniforme pour la géneration de chiffre double ? : " << (khi_deux < CRITICAL ) << endl;
 
 }
