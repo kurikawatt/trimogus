@@ -23,7 +23,7 @@ void selection_sort(vector<T> &vec, bool reversed){
             }
         }
         if (i != min_index){
-            swap(vec, i, min_index);
+            probed_swap(vec, i, min_index);
         }
     }
 };
