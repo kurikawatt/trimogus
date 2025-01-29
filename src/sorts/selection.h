@@ -6,7 +6,7 @@
 #include "sorts/probe.h"
 
 template <typename T>
-void selection_sort(vector<T> &vec){
+void selection_sort(vector<T> &vec, bool reversed){
 
     // Sonde pour le nombre de comp.
     __COMPARISION_COUNT__ = 0;
@@ -18,7 +18,7 @@ void selection_sort(vector<T> &vec){
         min_index = i;
         for (int j = i+1; j < vec.size(); j++){
             __COMPARISION_COUNT__++;
-            if (vec[j] < vec[min_index]){
+            if ((reversed && vec[j] > vec[min_index]) || (!reversed && vec[j] < vec[min_index])){
                 min_index = j;
             }
         }
