@@ -10,8 +10,14 @@ using namespace std;
 
 int main(int argc, char *argv[]){
 
+    cout << "\t-- Tri sélection --" << endl;
     BenchUnit<int> unit(selection_sort, 70000);
     unit.run();
+    cout << "\t-------------------" << endl;
 
+    cout << "\t-- Tri à bulle --" << endl;
+    BenchUnit<int> unit(bublesort, 70000);
+    unit.run();
+    cout << "\t-------------------" << endl;
     return 0;
 }
