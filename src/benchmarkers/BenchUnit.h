@@ -5,7 +5,6 @@
 
 #include "sorts/sorts.h"
 #include "generators/numbers.h"
-#include <functional>
 
 using namespace std;
 
@@ -43,5 +42,7 @@ void BenchUnit<int>::run(){
         cout << "Test pour n=" << i << endl;
         vector<int> v = random_int_vector(i);
         this->sort(v);
+        cout << "Fait en" << " oui (" << __COMPARISION_COUNT__ << " comp., " 
+             << __SWAP_COUNT__ << " swaps)" << endl;
     }
 }
