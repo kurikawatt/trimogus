@@ -11,12 +11,12 @@ using namespace std;
 int main(int argc, char *argv[]){
 
     __reset_probes();
-    /*
+    
     cout << "\t-- Tri sélection --" << endl;
     BenchUnit<int> unit(selection_sort, 70000);
     unit.run();
     cout << "\t-------------------" << endl;
-    */
+    
     __reset_probes();
 
     cout << "\t-- Tri à bulle --" << endl;

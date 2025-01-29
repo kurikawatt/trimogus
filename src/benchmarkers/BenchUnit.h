@@ -6,6 +6,7 @@
 
 #include "sorts/sorts.h"
 #include "generators/numbers.h"
+#include "tools/checkers.h"
 
 using namespace std;
 using namespace std::chrono;
@@ -49,6 +50,7 @@ void BenchUnit<int>::run(){
         auto duration = duration_cast<microseconds>(end - start);
         cout << "-> Fait en " << duration.count() << "ms (" << __COMPARISION_COUNT__ << " comp., " 
              << __SWAP_COUNT__ << " swaps)" << endl;
+        cout << "-> Est trié ? " << is_vector_sorted(v) << endl;
         cout << endl;
     }
 }
