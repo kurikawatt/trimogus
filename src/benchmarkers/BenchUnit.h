@@ -31,6 +31,7 @@ class BenchUnit {
         }
 
         void run();
+        void dirty_run(); // plz don't print that to user...
 };
 
 template <>
@@ -54,3 +55,15 @@ void BenchUnit<int>::run(){
         cout << endl;
     }
 }
+
+template <>
+void BenchUnit<int>::dirty_run(){ // i repeat, don't use that
+    for (int i = 16; i < this->max_size; i = i * 2){
+        vector<int> v = random_int_vector(i);
+        auto start = high_resolution_clock::now();
+        this->sort(v, false);
+        auto end = high_resolution_clock::now();
+        auto duration = duration_cast<microseconds>(end - start);
+        cout << i << ";" << duration.count() << ";" << __COMPARISION_COUNT__ << ";" << __SWAP_COUNT__ << endl;
+    }
+} // r u bored enough to read my shitty comments ?
