@@ -23,5 +23,13 @@ int main(int argc, char *argv[]){
     BenchUnit<int> unit2(bubblesort, 70000);
     unit2.run();
     cout << "\t-------------------" << endl;
+
+    __reset_probes();
+    
+    cout << "\t-- Tri rapide --" << endl;
+    BenchUnit<int> unit3(quick_sort, 70000);
+    unit3.run();
+    cout << "\t-------------------" << endl;
+
     return 0;
 }
