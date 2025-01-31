@@ -20,7 +20,7 @@ int main(int argc, char *argv[]){
     __reset_probes();
 
     cout << "\t-- Tri à bulle --" << endl;
-    BenchUnit<int> unit2(bublesort, 70000);
+    BenchUnit<int> unit2(bubblesort, 70000);
     unit2.run();
     cout << "\t-------------------" << endl;
     return 0;
