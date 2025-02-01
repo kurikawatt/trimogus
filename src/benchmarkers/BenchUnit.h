@@ -58,12 +58,24 @@ void BenchUnit<int>::run(){
 
 template <>
 void BenchUnit<int>::dirty_run(){ // i repeat, don't use that
+    
+    vector<size_t> sizes = {};
+    vector<int64_t> times = {};
+    vector<long long int> comps = {};
+    vector<long long int> swaps = {};
+
     for (int i = 16; i < this->max_size; i = i * 2){
+
         vector<int> v = random_int_vector(i);
+        
         auto start = high_resolution_clock::now();
         this->sort(v, false);
         auto end = high_resolution_clock::now();
         auto duration = duration_cast<microseconds>(end - start);
-        cout << i << ";" << duration.count() << ";" << __COMPARISION_COUNT__ << ";" << __SWAP_COUNT__ << endl;
-    }
+
+        sizes.push_back(i);
+        times.push_back(duration.count());
+        swaps.push_back(__SWAP_COUNT__);
+        comps.push_back(__COMPARISION_COUNT__);
+
 } // r u bored enough to read my shitty comments ?
