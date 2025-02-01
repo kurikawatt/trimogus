@@ -16,8 +16,9 @@ void print_array(T arr[], size_t size, string separator=" "){
 
 template <typename T> 
 void print_vector(vector<T> vec, string separator=" "){
+    cout << "[";
     for (T element : vec){
         cout << element << separator;
     }
-    cout << endl;
+    cout << "]" << endl;
 };
