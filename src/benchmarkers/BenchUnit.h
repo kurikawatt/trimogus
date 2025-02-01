@@ -84,12 +84,12 @@ void BenchUnit<int>::dirty_run(){ // i repeat, don't use that
     }
     
     cout << "sizes=";
-    print_vector(sizes);
+    print_vector(sizes, ",");
     cout << "times=";
-    print_vector(times);
+    print_vector(times, ",");
     cout << "swaps=";
-    print_vector(swaps);
+    print_vector(swaps, ",");
     cout << "comps=";
-    print_vector(comps);
+    print_vector(comps, ",");
 
 } // r u bored enough to read my shitty comments ?
