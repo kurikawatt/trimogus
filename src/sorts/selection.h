@@ -7,12 +7,6 @@
 
 template <typename T>
 void selection_sort(vector<T> &vec, bool reversed){
-
-    // Sonde pour le nombre de comp.
-    __COMPARISION_COUNT__ = 0;
-    // Remise à zéro du compteur de swap.
-    __SWAP_COUNT__ = 0;
-
     int min_index;
     for (int i = 0; i < vec.size()-1; i++){
         min_index = i;

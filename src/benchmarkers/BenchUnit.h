@@ -67,6 +67,8 @@ void BenchUnit<int>::dirty_run(){ // i repeat, don't use that
 
     for (int i = 16; i < this->max_size; i = i * 2){
 
+        __reset_probes();
+
         vector<int> v = random_int_vector(i);
         
         auto start = high_resolution_clock::now();
