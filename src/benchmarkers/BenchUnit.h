@@ -15,6 +15,7 @@ using namespace std::chrono;
 template <typename T>
 class BenchUnit {
     private:
+        string sort_name;
         void (*sort)(vector<T>&, bool);
         size_t max_size;
 
@@ -22,7 +23,7 @@ class BenchUnit {
         /**
          * Constructeur
          */
-        BenchUnit(void (*sort)(vector<T>&, bool), size_t max_vector_size);
+        BenchUnit(string name, void (*sort)(vector<T>&, bool), size_t max_vector_size);
         /**
          * Destructeur
          */
@@ -36,7 +37,8 @@ class BenchUnit {
 };
 
 template <>
-BenchUnit<int>::BenchUnit(void (*sort)(vector<int>&, bool), size_t max_vector_size){
+BenchUnit<int>::BenchUnit(string sort_name, void (*sort)(vector<int>&, bool), size_t max_vector_size){
+    this->sort_name = sort_name;
     this->sort = sort;
     this->max_size = max_vector_size;
 }
@@ -64,6 +66,8 @@ void BenchUnit<int>::dirty_run(){ // i repeat, don't use that
     vector<int64_t> times = {};
     vector<long long int> comps = {};
     vector<long long int> swaps = {};
+
+    cout << this->sort_name << endl;
 
     for (int i = 16; i < this->max_size; i = i * 2){
 
