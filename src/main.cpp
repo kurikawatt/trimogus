@@ -10,6 +10,9 @@ using namespace std;
 
 int main(int argc, char *argv[]){
 
+    // Setting the seed to an unknown value
+    srand(time(NULL));
+
     size_t vec_max_size = 600000;
 
     vector<BenchUnit<int>> benchs = {};
