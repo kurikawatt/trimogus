@@ -7,6 +7,7 @@
 #include "sorts/sorts.h"
 #include "generators/numbers.h"
 #include "tools/checkers.h"
+#include "tools/printers.h"
 
 using namespace std;
 using namespace std::chrono;
@@ -77,5 +78,16 @@ void BenchUnit<int>::dirty_run(){ // i repeat, don't use that
         times.push_back(duration.count());
         swaps.push_back(__SWAP_COUNT__);
         comps.push_back(__COMPARISION_COUNT__);
+
+    }
+    
+    cout << "sizes=";
+    print_vector(sizes);
+    cout << "times=";
+    print_vector(times);
+    cout << "swaps=";
+    print_vector(swaps);
+    cout << "comps=";
+    print_vector(comps);
 
 } // r u bored enough to read my shitty comments ?
