@@ -9,21 +9,17 @@
 using namespace std;
 
 int main(int argc, char *argv[]){
-    
-    cout << "\t-- Tri sélection --" << endl;
-    BenchUnit<int> unit(selection_sort, 70000);
-    unit.run();
-    cout << "\t-------------------" << endl;
-    
-    cout << "\t-- Tri à bulle --" << endl;
-    BenchUnit<int> unit2(bubblesort, 70000);
-    unit2.run();
-    cout << "\t-------------------" << endl;
-    
-    cout << "\t-- Tri rapide --" << endl;
-    BenchUnit<int> unit3(quick_sort, 70000);
-    unit3.run();
-    cout << "\t-------------------" << endl;
+
+    size_t vec_max_size = 600000;
+
+    vector<BenchUnit<int>> benchs = {};
+    benchs.push_back(BenchUnit<int>(selection_sort, vec_max_size));
+    benchs.push_back(BenchUnit<int>(bubblesort, vec_max_size));
+    benchs.push_back(BenchUnit<int>(quick_sort, vec_max_size));
+
+    for (BenchUnit<int> b : benchs){
+        b.dirty_run();
+    }
 
     return 0;
 }
