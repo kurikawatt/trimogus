@@ -5,6 +5,6 @@ using namespace std;
 class TestUnit {
 
     public:
-        virtual void run_all_tests() = 0;
+        virtual bool run_all_tests() = 0;
 
 };
