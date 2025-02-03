@@ -2,9 +2,11 @@
 #include "generators/numbers.h"
 #include "tools/pickers.h"
 
-
+/**
+ * Gènere un lettre MINUSCULE aléatoirement
+ */
 char random_char(){
-    return random_int(97,122); //Cursed af
+    return random_int(97, 122); //Cursed af
 }
 
 string random_string(size_t size){
