@@ -36,7 +36,7 @@ vector<double> random_double_vector(size_t size, double a, double b){
     return v;
 }
 
-vector<int> genIntTabControlled(size_t size, double proc){
+vector<int> random_int_vector_controlled(size_t size, float proc){
     vector<int> v;
 	
 	for(int i = 0; i < size; i++){
@@ -53,3 +53,5 @@ vector<int> genIntTabControlled(size_t size, double proc){
 
 	return v;
 }
+
+
