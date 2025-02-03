@@ -3,65 +3,25 @@
 #include <unistd.h>
 #include <cstdlib>
 
-#include "benchmarkers/debug_benchmark.h"
-#include "tools/input_parser.h"
+#include "benchmarkers/BenchUnit.h"
+#include "sorts/sorts.h"
 
 using namespace std;
 
-void print_version(){
-    cout << "Trimogus InDev" << endl;
-}
-
 int main(int argc, char *argv[]){
 
-    int opt;
+    // Setting the seed to an unknown value
+    srand(time(NULL));
 
-    string algo_name;
-    string data_type;
-    string path_to_words_file;
-    size_t vec_size = -1;
-    unsigned int seed = time(NULL);
+    size_t vec_max_size = 600000;
 
-    while ( (opt = getopt(argc, argv, "a:n:t:s:f:v")) != -1){
-        switch (opt){
-            case 'v':
-                print_version();
-                break;
-            case 'a':
-                algo_name = optarg;
-                break;
-            case 't':
-                data_type = optarg;
-                break;
-            case 'n':
-                vec_size = atoi(optarg);
-                break;
-            case 's':
-                seed = atoi(optarg);
-                break;
-            case 'f':
-                path_to_words_file = optarg;
-                break;
-            default:
-                break;
-        }
-    }
-    
-    if (algo_name.empty() || data_type.empty() || vec_size == -1) {
-        cerr << "Erreur: Vous devez fournir des arguments." << endl;
-        return 1;
-    }
+    vector<BenchUnit<int>> benchs = {};
+    benchs.push_back(BenchUnit<int>("selection sort", selection_sort, vec_max_size));
+    benchs.push_back(BenchUnit<int>("bubble sort", bubblesort, vec_max_size));
+    benchs.push_back(BenchUnit<int>("quicksort", quick_sort, vec_max_size));
 
-    int type = which_type(data_type);
-    int algo = which_algo(algo_name);
-
-    switch (type) {
-        case 1:
-            bench<int>(algo, type, vec_size);
-            break;
-        
-        default:
-            break;
+    for (BenchUnit<int> b : benchs){
+        b.dirty_run();
     }
 
     return 0;
