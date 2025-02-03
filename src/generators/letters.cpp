@@ -1,5 +1,6 @@
 #include "generators/letters.h"
 #include "generators/numbers.h"
+#include "tools/pickers.h"
 
 
 char random_char(){
@@ -15,7 +16,7 @@ string random_string(size_t size){
 }
 
 string random_word(vector<string> &words){
-    return "random";
+    return pick_in_vector(words);
 }
 
 vector<char> random_char_vector(size_t size){
@@ -26,31 +27,6 @@ vector<char> random_char_vector(size_t size){
     c.shrink_to_fit();
     return c;
 }
-
-/*
-vector<char> genCharArray(int n){
-	vector<char> res;
-	vector<char> charTab;
-	//Obtention de la taille du fichier
-	int sizeCharTab = 0;
-	string ligne;
-	ifstream file("letter.txt");
-	while (getline (file, ligne)) {
-		charTab.push_back(ligne[0]);
-		sizeCharTab++;
-	}
-	file.close();
-
-	//Remplissage du tableau
-	for(int i = 0; i < n; i++){
-		int randomIndex = randomInt(0, sizeCharTab-1);
-		res.push_back(charTab[randomIndex]);
-	}
-
-	res.shrink_to_fit();
-	return res;
-}
-*/
 
 vector<string> random_string_vector(size_t size){
     vector<string> c;
