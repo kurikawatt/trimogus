@@ -21,3 +21,5 @@ vector<int> random_int_vector(size_t size, int a=MIN_INT_GEN, int b=MAX_INT_GEN)
 vector<float> random_float_vector(size_t size, float a, float b);
 
 vector<double> random_double_vector(size_t size, double a, double b);
+
+vector<int> genIntTabControlled(size_t size, double proc);
