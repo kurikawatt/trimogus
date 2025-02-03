@@ -54,4 +54,40 @@ vector<int> random_int_vector_controlled(size_t size, float proc){
 	return v;
 }
 
+vector<float> random_float_vector_controlled(size_t size, float proc){
+    vector<float> v;
+	
+	for(int i = 0; i < size; i++){
+		v.push_back((float) i);
+	}
+
+	for(int i = 0; i < size-1; i++){
+		float rng = random_float(0,1);
+		if(rng < proc){
+			int index = random_int(i, size-1);
+			swap(v[i], v[index]);
+		}
+	}
+
+	return v;
+}
+
+vector<double> random_double_vector_controlled(size_t size, float proc){
+    vector<double> v;
+	
+	for(int i = 0; i < size; i++){
+		v.push_back((double) i); 
+	}
+
+	for(int i = 0; i < size-1; i++){
+		float rng = random_float(0,1);
+		if(rng < proc){
+			int index = random_int(i, size-1);
+			swap(v[i], v[index]);
+		}
+	}
+
+	return v;
+}
+
 

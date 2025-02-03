@@ -22,4 +22,8 @@ vector<float> random_float_vector(size_t size, float a, float b);
 
 vector<double> random_double_vector(size_t size, double a, double b);
 
-vector<int> genIntTabControlled(size_t size, double proc);
+vector<int> random_int_vector_controlled(size_t size, float proc);
+
+vector<float> random_float_vector_controlled(size_t size, float proc);
+
+vector<double> random_double_vector_controlled(size_t size, float proc);
