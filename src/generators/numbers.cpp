@@ -35,3 +35,21 @@ vector<double> random_double_vector(size_t size, double a, double b){
     }
     return v;
 }
+
+int* genIntTabControlled(size_t n, double proc){
+    vector<int> v;
+	
+	for(int i = 0; i < n; i++){
+		v.push_back(i);
+	}
+
+	for(int i = 0; i < n-1; i++){
+		float rng = random_float(0,1);
+		if(rng < proc){
+			int index = random_int(i, n-1);
+			swap(res, i, index);
+		}
+	}
+
+	return v;
+}
