@@ -1,4 +1,5 @@
 #include <cmath>
+#include <iostream>
 
 #include "generators/letters.h"
 #include "generators/numbers.h"
@@ -78,7 +79,7 @@ void nextWord(string &currWord){
 
     int size = currWord.size();
 
-    for(int i = size-1; i > 0; i--){
+    for(int i = size-1; i >= 0; i--){
         if(currWord[i] != 'z'){
             currWord[i]++;
             break;
@@ -95,7 +96,7 @@ vector<string> random_string_vector_controlled(size_t size, float proc){
 
     //Détermination de la taille des string
     int len = 0;
-    while(pow(2,1) < len){
+    while(pow(26,len) < size){
         len++;
     }
 
@@ -106,6 +107,7 @@ vector<string> random_string_vector_controlled(size_t size, float proc){
         nextWord(mot);
     }
 
+    
     //Mélange du tableau selon la probabilité passé en argument
     for(int i = 0; i < size-1; i++){
 		float rng = random_float(0,1);
