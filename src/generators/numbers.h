@@ -27,3 +27,9 @@ vector<int> random_int_vector_controlled(size_t size, float proc);
 vector<float> random_float_vector_controlled(size_t size, float proc);
 
 vector<double> random_double_vector_controlled(size_t size, float proc);
+
+vector<int> reversed_sorted_int_vector(size_t size);
+
+vector<float> reversed_sorted_float_vector(size_t size);
+
+vector<double> reversed_sorted_double_vector(size_t size);
