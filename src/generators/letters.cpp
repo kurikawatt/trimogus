@@ -53,7 +53,16 @@ vector<string> random_words_vector(vector<string> &words, size_t size){
 vector<char> random_char_vector_controlled(size_t size, float proc){
     vector<char> c;
 
+    
 
+
+    for(int i = 0; i < size-1; i++){
+		float rng = random_float(0,1);
+		if(rng < proc){
+			int index = random_int(i, size-1);
+			swap(c[i], c[index]);
+		}
+	}
       
     c.shrink_to_fit();
     return c;
