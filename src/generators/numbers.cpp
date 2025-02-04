@@ -17,6 +17,7 @@ vector<int> random_int_vector(size_t size, int a, int b){
     for(int i = 0; i < size; i++){
         v.push_back(random_int(a,b));
     }
+	v.shrink_to_fit();
     return v;
 }
 
@@ -25,6 +26,7 @@ vector<float> random_float_vector(size_t size, float a, float b){
     for(int i = 0; i < size; i++){
         v.push_back(random_float(a,b));
     }
+	v.shrink_to_fit();
     return v;
 }
 
@@ -33,6 +35,7 @@ vector<double> random_double_vector(size_t size, double a, double b){
     for(int i = 0; i < size; i++){
         v.push_back(random_double(a,b));
     }
+	v.shrink_to_fit();
     return v;
 }
 
@@ -51,6 +54,7 @@ vector<int> random_int_vector_controlled(size_t size, float proc){
 		}
 	}
 
+	v.shrink_to_fit();
 	return v;
 }
 
@@ -69,6 +73,7 @@ vector<float> random_float_vector_controlled(size_t size, float proc){
 		}
 	}
 
+	v.shrink_to_fit();
 	return v;
 }
 
@@ -87,6 +92,7 @@ vector<double> random_double_vector_controlled(size_t size, float proc){
 		}
 	}
 
+	v.shrink_to_fit();
 	return v;
 }
 
