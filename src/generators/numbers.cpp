@@ -99,4 +99,29 @@ vector<double> random_double_vector_controlled(size_t size, float proc){
 	return v;
 }
 
+vector<int> reversed_sorted_int_vector(size_t size){
+    vector<int> v;
+    for(int i = size; i >= 0; i--){
+        v.push_back(i);
+    }
+	v.shrink_to_fit();
+    return v;
+}
 
+vector<float> reversed_sorted_float_vector(size_t size){
+    vector<float> v;
+    for(int i = size; i >= 0; i--){
+        v.push_back((float) i);
+    }
+	v.shrink_to_fit();
+    return v;
+}
+
+vector<double> reversed_sorted_double_vector(size_t size){
+    vector<double> v;
+    for(int i = size; i >= 0; i--){
+        v.push_back((double) i);
+    }
+	v.shrink_to_fit();
+    return v;
+}
