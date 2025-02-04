@@ -12,4 +12,4 @@
 #include "sorts/insertion.h"
 #include "sorts/quicksort.h"
 #include "sorts/bublesort.h"
-#include "sorts/mergesort.h"
+#include "sorts/topdown_mergesort.h"
