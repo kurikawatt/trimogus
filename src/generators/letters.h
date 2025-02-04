@@ -23,3 +23,4 @@ vector<char> random_char_vector_controlled(size_t size, float proc);
 
 vector<string> random_string_vector_controlled(size_t size, float proc);
 
+vector<string> random_word_vector_controlled(size_t size, vector<string> &words, float proc);
