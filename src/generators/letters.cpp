@@ -49,3 +49,12 @@ vector<string> random_words_vector(vector<string> &words, size_t size){
     c.shrink_to_fit();
     return c;
 }
+
+vector<char> random_char_vector_controlled(size_t size, float proc){
+    vector<char> c;
+
+
+      
+    c.shrink_to_fit();
+    return c;
+}
