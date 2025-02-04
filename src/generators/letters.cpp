@@ -56,11 +56,18 @@ vector<string> random_words_vector(vector<string> &words, size_t size){
 vector<char> random_char_vector_controlled(size_t size, float proc){
     vector<char> c;
 
-    /*
-    
-    FAUT DES TRUCS
-    
-    */
+    int nbOccur = floor(size/26);
+    int nbRestant = size - (nbOccur * 26);
+
+    for(int i = 0; i < 26; i++){
+        for(int j = 0; j < nbOccur; j++){
+            c.push_back((char) 97+i);
+        }
+        if(nbRestant != 0){
+            c.push_back((char) 97+i);
+            nbRestant--;
+        }
+    }
 
     //Mélange du tableau selon la probabilité passé en argument
     for(int i = 0; i < size-1; i++){
@@ -106,7 +113,6 @@ vector<string> random_string_vector_controlled(size_t size, float proc){
         c.push_back(mot);
         nextWord(mot);
     }
-
     
     //Mélange du tableau selon la probabilité passé en argument
     for(int i = 0; i < size-1; i++){
@@ -120,3 +126,35 @@ vector<string> random_string_vector_controlled(size_t size, float proc){
     c.shrink_to_fit();
     return c;
 }
+
+
+vector<string> random_word_vector_controlled(size_t size, vector<string> &words, float proc){
+    vector<string> c;
+
+    int tailleDoc = words.size();
+    int nbOccur = floor(size/tailleDoc);
+    int nbRestant = size - (nbOccur * tailleDoc);
+
+    for(int i = 0; i < tailleDoc-1; i++){
+        for(int j = 0; j < nbOccur; j++){
+            c.push_back(words[i]);
+        }
+        if(nbRestant != 0){
+            c.push_back(words[i]);
+            nbRestant--;
+        }
+    }
+
+    //Mélange du tableau selon la probabilité passé en argument
+    for(int i = 0; i < size-1; i++){
+		float rng = random_float(0,1);
+		if(rng < proc){
+			int index = random_int(i, size-1);
+			swap(c[i], c[index]);
+		}
+	}
+      
+    c.shrink_to_fit();
+    return c;
+}
+
