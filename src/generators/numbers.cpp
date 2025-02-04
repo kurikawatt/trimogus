@@ -46,6 +46,7 @@ vector<int> random_int_vector_controlled(size_t size, float proc){
 		v.push_back(i);
 	}
 
+	//Mélange du tableau selon la probabilité passé en argument
 	for(int i = 0; i < size-1; i++){
 		float rng = random_float(0,1);
 		if(rng < proc){
@@ -65,6 +66,7 @@ vector<float> random_float_vector_controlled(size_t size, float proc){
 		v.push_back((float) i);
 	}
 
+    //Mélange du tableau selon la probabilité passé en argument
 	for(int i = 0; i < size-1; i++){
 		float rng = random_float(0,1);
 		if(rng < proc){
@@ -84,6 +86,7 @@ vector<double> random_double_vector_controlled(size_t size, float proc){
 		v.push_back((double) i); 
 	}
 
+    //Mélange du tableau selon la probabilité passé en argument
 	for(int i = 0; i < size-1; i++){
 		float rng = random_float(0,1);
 		if(rng < proc){
