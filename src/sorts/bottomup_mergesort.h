@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <algorithm>
 
 #include "sorts/probe.h"
 #include "tools/swap.h"
@@ -24,11 +25,12 @@ void bottomup_merge(vector<T> &vec, size_t left, size_t right, size_t end, vecto
 
 template <typename T>
 void bottomup_mergesort(vector<T> &vec){
-    vector<T> buffer = copy_vector(vec);
+    vector<T> buffer(vec.size()); // on crée un buffer de la taille de vec.
     size_t n = vec.size();
-    for (size_t width = 1; width < n; width = width * 2){
-        for (size_t i = i; i < n; i = i + width * 2){
-            bottomup_merge(vec, i, min(i+width, n), min(i+width*2,n), buffer);
+    for (size_t width = 1; width < n; width *= 2){
+        for (size_t i = 0; i < n; i += 2 * width){
+            bottomup_merge(vec, i, min(i + width, n), min(i + 2 * width, n), buffer);
         }
+        copy(buffer.begin(), buffer.end(), vec.begin());
     }
 }
