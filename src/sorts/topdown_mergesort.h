@@ -13,6 +13,7 @@ void td_merge(vector<T> &vec, size_t start, size_t middle, size_t end, vector<T>
     i = start;
     j = middle;
     for (size_t k = start; k < end; k++){
+        __COMPARISION_COUNT__++;
         if (i < middle && (j >= end || buffer[i] <= buffer[j])){
             vec[k] = buffer[i];
             i++;

@@ -12,6 +12,7 @@ void bottomup_merge(vector<T> &vec, size_t left, size_t right, size_t end, vecto
     i = left;
     j = right;
     for (size_t k = left; k < end; k++){
+        __COMPARISION_COUNT__++;
         if (i < right && (j >= end || vec[i] <= vec[j])){
             buffer[k] = vec[i];
             i++;
