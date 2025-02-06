@@ -4,7 +4,6 @@
 
 #include "sorts/probe.h"
 #include "tools/swap.h"
-#include "tools/copy_vector.h"
 
 using namespace std;
 
@@ -34,7 +33,7 @@ void td_splitmerge(vector<T> &vec, size_t start, size_t end, vector<T> &buffer){
 }
 
 template <typename T>
-void topdown_mergesort(vector<T> &vec){
+void topdown_mergesort(vector<T> &vec, bool reversed=false){
     vector<T> buffer(vec);
     td_splitmerge(vec, 0, vec.size(), buffer);
 }
