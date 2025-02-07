@@ -5,7 +5,19 @@
 
 using namespace std;
 
-template <typename T> void probed_swap(vector<T> &vec, unsigned int i, unsigned int j){
+/**
+ * Permutte deux éléments d'un vecteur, 
+ * 
+ * @param vec un vecteur
+ * 
+ * @param i un indice
+ * @param j un indice
+ * 
+ * @ensures si i et j étaient strictement inférieurs à vec.size(),
+ * alors, les éléments d'indices i et j ont été permutté
+ * @ensures la variable globale __SWAP_COUNT__ est incrémentée de 1
+ */
+template <typename T> void probed_swap(vector<T> &vec, size_t i, size_t j){
     if (vec.size() < i || vec.size() < j) return;
     __SWAP_COUNT__++;
     T temp = vec[i];
