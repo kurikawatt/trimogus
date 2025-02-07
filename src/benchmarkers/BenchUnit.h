@@ -15,7 +15,7 @@
 using namespace std;
 using namespace std::chrono;
 
-const vector<int> __VEC_SIZES__ = {10,50,100,500,1000,5000,10000}; 
+const vector<int> __VEC_SIZES__ = {10,50,100,500,1000,5000,10000,50000,100000}; 
 
 template <typename T>
 class BenchUnit {
@@ -37,13 +37,19 @@ class BenchUnit {
         }
 
         void run();
-        void dirty_run(); // plz don't print that to user...
+        string get_sort_name();
+        nlohmann::json dirty_run(); // plz don't print that to user...
 };
 
 template <>
 BenchUnit<int>::BenchUnit(string sort_name, void (*sort)(vector<int>&, bool)){
     this->sort_name = sort_name;
     this->sort = sort;
+}
+
+template <typename T>
+string BenchUnit<T>::get_sort_name(){
+    return this->sort_name;
 }
 
 template <>
@@ -63,7 +69,7 @@ void BenchUnit<int>::run(){
 }
 
 template <>
-void BenchUnit<int>::dirty_run(){ // i repeat, don't use that
+nlohmann::json BenchUnit<int>::dirty_run(){ // i repeat, don't use that
     
     vector<int64_t> times_ms = {};
     vector<int64_t> times_s = {};
@@ -97,11 +103,8 @@ void BenchUnit<int>::dirty_run(){ // i repeat, don't use that
 
     }
 
-    string filename = this->sort_name + "_res.json";
-
     nlohmann::json results;
     
-    results["algo"] = this->sort_name;
     results["datatype"] = "int";
     results["sizes"] = __VEC_SIZES__;
     results["times"]["ms"] = times_ms;
@@ -112,12 +115,6 @@ void BenchUnit<int>::dirty_run(){ // i repeat, don't use that
     results["memory"]["input"] = input_bytes_sizes;
     results["memory"]["allocated"] = buffers_bytes_allocated;
 
-    ofstream file(filename);
-    if (file.is_open()){
-        file << setw(4) << results << endl;
-        file.close();
-    } else {
-        cerr << "Error : Can't open " << filename << endl;
-    }
+    return results;
 
 } // r u bored enough to read my shitty comments ?
