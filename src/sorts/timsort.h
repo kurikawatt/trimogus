@@ -12,6 +12,7 @@ void partial_insertion_sort(vector<T>& vec, int left, int right) {
     for (int i = left + 1; i <= right; i++) {
         T temp = vec[i];
         int j = i - 1;
+        __COMPARISION_COUNT__++;
         while (j >= left && vec[j] > temp) {
             vec[j + 1] = vec[j];
             j--;
@@ -34,6 +35,7 @@ void merge(vector<T>& vec, int l, int m, int r) {
 
     int i = 0, j = 0, k = l;
     while (i < len1 && j < len2) {
+        __COMPARISION_COUNT__++;
         if (left[i] <= right[j]) {
             vec[k] = left[i];
             i++;
