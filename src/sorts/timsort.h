@@ -3,6 +3,8 @@
 #include <vector>
 #include <algorithm>
 
+#include "tools/buffers.h"
+
 const int RUN = 32;
 
 template <typename T>
@@ -21,7 +23,8 @@ void partial_insertion_sort(vector<T>& vec, int left, int right) {
 template <typename T>
 void merge(vector<T>& vec, int l, int m, int r) {
     int len1 = m - l + 1, len2 = r - m;
-    vector<T> left(len1), right(len2);
+    vector<T> left = probed_vec_buffering<T>(len1);
+    vector<T> right = probed_vec_buffering<T>(len2);
     
     for (int i = 0; i < len1; i++)
         left[i] = vec[l + i];

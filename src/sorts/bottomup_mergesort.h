@@ -5,6 +5,7 @@
 
 #include "sorts/probe.h"
 #include "tools/swap.h"
+#include "tools/buffers.h"
 
 template <typename T>
 void bottomup_merge(vector<T> &vec, size_t left, size_t right, size_t end, vector<T> &buffer){
@@ -25,7 +26,7 @@ void bottomup_merge(vector<T> &vec, size_t left, size_t right, size_t end, vecto
 
 template <typename T>
 void bottomup_mergesort(vector<T> &vec, bool reversed=false){
-    vector<T> buffer(vec.size()); // on crée un buffer de la taille de vec.
+    vector<T> buffer = probed_vec_buffering<T>(vec.size()); // on crée un buffer de la taille de vec.
     size_t n = vec.size();
     for (size_t width = 1; width < n; width *= 2){
         for (size_t i = 0; i < n; i += 2 * width){
