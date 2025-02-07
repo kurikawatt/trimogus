@@ -3,6 +3,9 @@
 #include <iostream>
 #include <vector>
 #include <chrono>
+#include <fstream>
+
+#include <nlohmann/json.hpp>
 
 #include "sorts/sorts.h"
 #include "generators/numbers.h"
@@ -12,7 +15,7 @@
 using namespace std;
 using namespace std::chrono;
 
-const vector<int> __VEC_SIZES__ = {10,50,100,500,1000,5000,10000,50000,100000,500000,1000000,5000000}; 
+const vector<int> __VEC_SIZES__ = {10,50,100,500,1000,5000,10000}; 
 
 template <typename T>
 class BenchUnit {
@@ -62,11 +65,13 @@ void BenchUnit<int>::run(){
 template <>
 void BenchUnit<int>::dirty_run(){ // i repeat, don't use that
     
-    vector<size_t> sizes = {};
     vector<int64_t> times_ms = {};
     vector<int64_t> times_s = {};
     vector<long long int> comps = {};
     vector<long long int> swaps = {};
+    vector<long long int> buffers_elements_count = {};
+    vector<long long int> input_bytes_sizes = {};
+    vector<long long int> buffers_bytes_allocated = {};
 
     cout << this->sort_name << endl;
 
@@ -82,23 +87,37 @@ void BenchUnit<int>::dirty_run(){ // i repeat, don't use that
         auto duration = duration_cast<microseconds>(end - start);
         auto duration_s = duration_cast<seconds>(end - start);
 
-        sizes.push_back(i);
         times_ms.push_back(duration.count());
         times_s.push_back(duration_s.count());
         swaps.push_back(__SWAP_COUNT__);
         comps.push_back(__COMPARISION_COUNT__);
+        buffers_elements_count.push_back(__BUFFER_SIZE__);
+        input_bytes_sizes.push_back(i * sizeof(int));
+        buffers_bytes_allocated.push_back(__BYTES_ALLOCATED__);
 
     }
+
+    string filename = this->sort_name + "_res.json";
+
+    nlohmann::json results;
     
-    cout << "sizes=";
-    print_vector(sizes, ",");
-    cout << "times_ms=";
-    print_vector(times_ms, ",");
-    cout << "times_s=";
-    print_vector(times_s, ",");
-    cout << "swaps=";
-    print_vector(swaps, ",");
-    cout << "comps=";
-    print_vector(comps, ",");
+    results["algo"] = this->sort_name;
+    results["datatype"] = "int";
+    results["sizes"] = __VEC_SIZES__;
+    results["times"]["ms"] = times_ms;
+    results["times"]["s"] = times_s;
+    results["swaps"] = swaps;
+    results["comps"] = comps;
+    results["buffers_element_count"] = buffers_elements_count;
+    results["memory"]["input"] = input_bytes_sizes;
+    results["memory"]["allocated"] = buffers_bytes_allocated;
+
+    ofstream file(filename);
+    if (file.is_open()){
+        file << setw(4) << results << endl;
+        file.close();
+    } else {
+        cerr << "Error : Can't open " << filename << endl;
+    }
 
 } // r u bored enough to read my shitty comments ?
