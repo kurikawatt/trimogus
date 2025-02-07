@@ -14,3 +14,4 @@
 #include "sorts/bublesort.h"
 #include "sorts/topdown_mergesort.h"
 #include "sorts/bottomup_mergesort.h"
+#include "sorts/timsort.h"
