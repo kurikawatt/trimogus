@@ -12,18 +12,19 @@
 using namespace std;
 using namespace std::chrono;
 
+const vector<int> __VEC_SIZES__ = {10,50,100,500,1000,5000,10000,50000,100000,500000,1000000,5000000}; 
+
 template <typename T>
 class BenchUnit {
     private:
         string sort_name;
         void (*sort)(vector<T>&, bool);
-        size_t max_size;
 
     public:
         /**
          * Constructeur
          */
-        BenchUnit(string name, void (*sort)(vector<T>&, bool), size_t max_vector_size);
+        BenchUnit(string name, void (*sort)(vector<T>&, bool));
         /**
          * Destructeur
          */
@@ -37,15 +38,14 @@ class BenchUnit {
 };
 
 template <>
-BenchUnit<int>::BenchUnit(string sort_name, void (*sort)(vector<int>&, bool), size_t max_vector_size){
+BenchUnit<int>::BenchUnit(string sort_name, void (*sort)(vector<int>&, bool)){
     this->sort_name = sort_name;
     this->sort = sort;
-    this->max_size = max_vector_size;
 }
 
 template <>
 void BenchUnit<int>::run(){
-    for (int i = 16; i < this->max_size; i = i * 2) {
+    for (int i : __VEC_SIZES__) {
         cout << "-- Test pour n=" << i << " --" << endl;
         vector<int> v = random_int_vector(i);
         auto start = high_resolution_clock::now();
@@ -63,13 +63,14 @@ template <>
 void BenchUnit<int>::dirty_run(){ // i repeat, don't use that
     
     vector<size_t> sizes = {};
-    vector<int64_t> times = {};
+    vector<int64_t> times_ms = {};
+    vector<int64_t> times_s = {};
     vector<long long int> comps = {};
     vector<long long int> swaps = {};
 
     cout << this->sort_name << endl;
 
-    for (int i = 16; i < this->max_size; i = i * 2){
+    for (int i : __VEC_SIZES__){
 
         __reset_probes();
 
@@ -79,9 +80,11 @@ void BenchUnit<int>::dirty_run(){ // i repeat, don't use that
         this->sort(v, false);
         auto end = high_resolution_clock::now();
         auto duration = duration_cast<microseconds>(end - start);
+        auto duration_s = duration_cast<seconds>(end - start);
 
         sizes.push_back(i);
-        times.push_back(duration.count());
+        times_ms.push_back(duration.count());
+        times_s.push_back(duration_s.count());
         swaps.push_back(__SWAP_COUNT__);
         comps.push_back(__COMPARISION_COUNT__);
 
@@ -89,8 +92,10 @@ void BenchUnit<int>::dirty_run(){ // i repeat, don't use that
     
     cout << "sizes=";
     print_vector(sizes, ",");
-    cout << "times=";
-    print_vector(times, ",");
+    cout << "times_ms=";
+    print_vector(times_ms, ",");
+    cout << "times_s=";
+    print_vector(times_s, ",");
     cout << "swaps=";
     print_vector(swaps, ",");
     cout << "comps=";
