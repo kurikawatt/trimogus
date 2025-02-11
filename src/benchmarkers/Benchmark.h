@@ -16,7 +16,7 @@ template <typename T>
 class Benchmark {
     private:
         int seed;
-        std::function<void(std::vector<T>&)> sort;
+        void (*sort)(vector<T> &vec);
         
         vector<int64_t> duration = {}; // temps en millisecondes
         vector<long long int> comps = {};
@@ -26,10 +26,10 @@ class Benchmark {
         vector<long long int> buffers_bytes_size = {};
 
     public:
-        Benchmark(std::function<void(std::vector<T>&)>);
+        Benchmark(void (*sort)(vector<T> &vec));
         ~Benchmark();
         void set_seed(int seed);
-        void set_sort(std::function<void(std::vector<T>&)>);
+        void set_sort(void (*sort)(vector<T> &vec));
         void run(vector<size_t> sizes={100,500,1000,5000,10000,50000,100000,500000,1000000,5000000}, int range_min=-100, int range_max=100);
         void record(size_t size, int64_t duration);
         nlohmann::json export_results();
@@ -37,7 +37,7 @@ class Benchmark {
 };
 
 template <typename T>
-Benchmark<T>::Benchmark(std::function<void(std::vector<T>&)>){
+Benchmark<T>::Benchmark(void (*sort)(vector<T> &vec)){
     this->sort = sort;
     this->seed = time(NULL);
 }
@@ -51,7 +51,7 @@ void Benchmark<T>::set_seed(int seed){
 }
 
 template <typename T>
-void Benchmark<T>::set_sort(std::function<void(std::vector<T>&)>){
+void Benchmark<T>::set_sort(void (*sort)(vector<T> &vec)){
     this->sort = sort;
 }
 
