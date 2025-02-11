@@ -179,5 +179,26 @@ vector<char> reversed_sorted_char_vector(size_t size){
 
 }
 
+vector<string> reversed_sorted_word_vector(size_t size, vector<string> words){
+    vector<string> c;
 
+    int tailleDoc = words.size();
+    int nbOccur = floor(size/tailleDoc);
+    int nbRestant = size - (nbOccur * tailleDoc);
+
+
+    for(int i = tailleDoc-1; i >= 0; i--){
+        for(int j = 0; j < nbOccur; j++){
+            c.push_back(words[i]);
+        }
+        if(nbRestant != 0){
+            c.push_back(words[i]);
+            nbRestant--;
+        }
+    }
+
+    c.shrink_to_fit();
+    return c;
+
+}
 
