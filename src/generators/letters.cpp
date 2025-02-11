@@ -232,6 +232,7 @@ vector<string> reversed_sorted_string_vector(size_t size){
         previousWord(mot);
     }
 
+    c.shrink_to_fit();
     return c;
 }
 
