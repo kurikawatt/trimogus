@@ -158,3 +158,26 @@ vector<string> random_word_vector_controlled(size_t size, vector<string> &words,
     return c;
 }
 
+vector<char> reversed_sorted_char_vector(size_t size){
+    vector<char> c;
+
+    int nbOccur = floor(size/26);
+    int nbRestant = size - (nbOccur * 26);
+
+    for(int i = 1; i < 27; i++){
+        for(int j = 0; j < nbOccur; j++){
+            c.push_back((char) 123-i);
+        }
+        if(nbRestant != 0){
+            c.push_back((char) 123-i);
+            nbRestant--;
+        }
+    }
+      
+    c.shrink_to_fit();
+    return c;
+
+}
+
+
+
