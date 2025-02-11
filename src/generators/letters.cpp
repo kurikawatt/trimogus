@@ -96,6 +96,19 @@ void nextWord(string &currWord){
     }
 }
 
+void previousWord(string &currWord){
+    int size = currWord.size();
+
+    for(int i = size-1; i >= 0; i--){
+        if(currWord[i] != 'a'){
+            currWord[i]--;
+            break;
+        } else {
+            currWord[i] = 'z';
+        }
+    }
+}
+
 
 
 vector<string> random_string_vector_controlled(size_t size, float proc){
@@ -200,5 +213,25 @@ vector<string> reversed_sorted_word_vector(size_t size, vector<string> words){
     c.shrink_to_fit();
     return c;
 
+}
+
+vector<string> reversed_sorted_string_vector(size_t size){
+
+    vector<string> c;
+
+    //Détermination de la taille des string
+    int len = 0;
+    while(pow(26,len) < size){
+        len++;
+    }
+
+    //Géneration du tableau triée
+    string mot(len, 'z'); //Génère un mot de taille "size" constitué uniquement de 'a'
+    for(int i = 0; i < size; i++){
+        c.push_back(mot);
+        previousWord(mot);
+    }
+
+    return c;
 }
 
