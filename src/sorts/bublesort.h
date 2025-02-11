@@ -8,11 +8,11 @@
 using namespace std;
 
 template <typename T>
-void bubblesort(vector<T> &vec, bool reversed=false){
+void bubblesort(vector<T> &vec){
     for (size_t i = 0; i < vec.size()-1; i++){
         for (size_t j = 0; j < vec.size()-i-1; j++){
             __COMPARISION_COUNT__++;
-            if ((reversed && vec[j] < vec[j+1]) || (!reversed && vec[j] > vec[j+1])){
+            if (vec[j] > vec[j+1]){
                 probed_swap(vec, j, j+1);
             }
         }
@@ -20,13 +20,13 @@ void bubblesort(vector<T> &vec, bool reversed=false){
 }
 
 template <typename T>
-void optimized_bubblesort(vector<T> &vec, bool reversed=false) {
+void optimized_bubblesort(vector<T> &vec) {
     bool swapped;
     for (size_t i = 0; i < vec.size()-1; i++) {
         swapped = false;
         for (size_t j = 0; j < vec.size()-i-1; j++) {
             __COMPARISION_COUNT__++;
-            if ((reversed && vec[j] < vec[j+1]) || (!reversed && vec[j] > vec[j+1])) {
+            if (vec[j] > vec[j+1]) {
                 probed_swap(vec, j, j+1);
                 swapped = true;
             }

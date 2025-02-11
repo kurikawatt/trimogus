@@ -35,7 +35,7 @@ void td_splitmerge(vector<T> &vec, size_t start, size_t end, vector<T> &buffer){
 }
 
 template <typename T>
-void topdown_mergesort(vector<T> &vec, bool reversed=false){
+void topdown_mergesort(vector<T> &vec){
     vector<T> buffer = probed_vec_buffering<T>(vec.size());
     td_splitmerge(vec, 0, vec.size(), buffer);
 }

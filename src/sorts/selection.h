@@ -6,13 +6,13 @@
 #include "sorts/probe.h"
 
 template <typename T>
-void selection_sort(vector<T> &vec, bool reversed){
+void selection_sort(vector<T> &vec){
     int min_index;
     for (int i = 0; i < vec.size()-1; i++){
         min_index = i;
         for (int j = i+1; j < vec.size(); j++){
             __COMPARISION_COUNT__++;
-            if ((reversed && vec[j] > vec[min_index]) || (!reversed && vec[j] < vec[min_index])){
+            if (vec[j] < vec[min_index]){
                 min_index = j;
             }
         }

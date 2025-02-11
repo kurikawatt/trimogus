@@ -15,7 +15,7 @@
 using namespace std;
 using namespace std::chrono;
 
-const vector<int> __VEC_SIZES__ = {10,50,100,500,1000,5000,10000,50000,100000,500000,1000000,5000000,10000000}; // ,50000000,1000000000 
+const vector<int> __VEC_SIZES__ = {10,50,100,500,1000,5000,10000,50000}; 
 
 template <typename T>
 class BenchUnit {

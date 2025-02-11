@@ -9,8 +9,8 @@
 using namespace std;
 
 template <typename T>
-void bogosort(vector<T> &vec, bool reversed=false){
-    while (!is_vector_sorted(vec, reversed)){
+void bogosort(vector<T> &vec){
+    while (!is_vector_sorted(vec)){
         knuth_shuffle(vec);
     }
 }

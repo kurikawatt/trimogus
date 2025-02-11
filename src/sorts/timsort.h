@@ -60,7 +60,7 @@ void merge(vector<T>& vec, int l, int m, int r) {
 };
 
 template <typename T>
-void tim_sort(vector<T>& vec, bool reversed=false) {
+void tim_sort(vector<T>& vec) {
     int n = vec.size();
 
     for (int i = 0; i < n; i += RUN)

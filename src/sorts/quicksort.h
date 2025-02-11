@@ -35,6 +35,6 @@ void quick_sort_aux(vector<T>& arr, int low, int high) {
 }
 
 template <typename T>
-void quick_sort(vector<T> &vec, bool reversed=false){
+void quick_sort(vector<T> &vec){
     quick_sort_aux(vec, 0, vec.size());
 }
