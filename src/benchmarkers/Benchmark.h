@@ -32,7 +32,7 @@ class Benchmark {
         ~Benchmark();
         void set_seed(int seed);
         void set_sort(void (*sort)(vector<T> &vec));
-        void run(vector<size_t> sizes={1000,5000,10000,50000,100000,500000,1000000}, int range_min=-1024, int range_max=1024);
+        void run(vector<size_t> sizes={1000,5000,10000,50000,100000,500000,1000000,5000000,10000000,50000000}, int range_min=-1024, int range_max=1024);
         void record(size_t size, int64_t duration);
         nlohmann::json export_results();
         void reset_value();
@@ -72,6 +72,7 @@ void Benchmark<T>::record(size_t size, int64_t duration){
 template <>
 void Benchmark<int>::run(vector<size_t> sizes, int range_min, int range_max){
     for (size_t n : sizes){
+        cout << "- fully random of " << n << " elements" << endl;
         // On reset la seed à chaque tour, pour que les tableaux soient toujours identique
         srand(this->seed);
         // Idem pour les sondes, afin de ne pas fausser les résultats
@@ -91,6 +92,7 @@ void Benchmark<int>::run(vector<size_t> sizes, int range_min, int range_max){
     this->reset_value();
 
     for (size_t n : sizes){
+        cout << "- half sorted of " << n << " elements" << endl;
         // On reset la seed à chaque tour, pour que les tableaux soient toujours identique
         srand(this->seed);
         // Idem pour les sondes, afin de ne pas fausser les résultats
@@ -108,19 +110,17 @@ void Benchmark<int>::run(vector<size_t> sizes, int range_min, int range_max){
     this->summary["half_sorted"] = this->export_results();
     this->reset_value();
     
-    cout << "-- Sorted --" << endl;
     for (size_t n : sizes){
-        cout << "size: " << n;
+        cout << "- already sorted of " << n << " elements" << endl;
         // On reset la seed à chaque tour, pour que les tableaux soient toujours identique
         srand(this->seed);
         // Idem pour les sondes, afin de ne pas fausser les résultats
         __reset_probes();
 
         vector<int> vec = random_int_vector_controlled(n, 0);
-        cout << ", actual vec.size(): " << vec.size() << endl;
 
         auto start_time = high_resolution_clock::now();
-        cout << "@vec: " << &vec << endl;
+
         this->sort(vec);
 
         auto end_time = high_resolution_clock::now();
