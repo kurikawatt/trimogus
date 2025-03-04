@@ -35,6 +35,7 @@ unsigned int partition(vector<T> &vec, unsigned int low, unsigned int high){
     T pivot = vec[high];
     unsigned int i = low - 1;
     for (unsigned int j = low; j < high; j++){
+        __COMPARISION_COUNT__++;
         if (vec[j] < pivot){
             i++;
             probed_swap(vec, i, j);
