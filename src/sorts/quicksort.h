@@ -8,32 +8,38 @@
 using namespace std;
 
 template <typename T>
-int partition(vector<T>& arr, int low, int high) {
+void quicksort(vector<T> &vec);
 
-    T pivot = arr[high];
-    int i = low - 1;
+template <typename T>
+void quicksort_aux(vector<T> &vec, unsigned int low, unsigned int high);
 
-    for (int j = low; j <= high - 1; j++) {
-        __COMPARISION_COUNT__++;
-        if (arr[j] < pivot) {
+template <typename T>
+unsigned int partition(vector<T> &vec, unsigned int low, unsigned int high);
+
+template <typename T>
+void quicksort(vector<T> &vec){
+    quicksort_aux(vec, 0, vec.size());
+}
+
+template <typename T>
+void quicksort_aux(vector<T> &vec, unsigned int low, unsigned int high){
+    if (low < high && high < vec.size()){
+        unsigned int pi = partition(vec, low, high);
+        quicksort_aux(vec, low, pi - 1);
+        quicksort_aux(vec, pi + 1, high);
+    }
+}
+
+template <typename T>
+unsigned int partition(vector<T> &vec, unsigned int low, unsigned int high){
+    T pivot = vec[high];
+    unsigned int i = low - 1;
+    for (unsigned int j = low; j < high; j++){
+        if (vec[j] < pivot){
             i++;
-            probed_swap(arr, i, j);
+            probed_swap(vec, i, j);
         }
     }
-    probed_swap(arr, i + 1, high);  
+    probed_swap(vec, i + 1, high);
     return i + 1;
-}
-
-template <typename T>
-void quick_sort_aux(vector<T>& arr, int low, int high) {
-    if (low < high && high < arr.size()) {
-        int pi = partition(arr, low, high);
-        quick_sort_aux(arr, low, pi - 1);
-        quick_sort_aux(arr, pi + 1, high);
-    }
-}
-
-template <typename T>
-void quick_sort(vector<T> &vec){
-    quick_sort_aux(vec, 0, vec.size()-1);
 }
