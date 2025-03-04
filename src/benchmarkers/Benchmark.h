@@ -71,7 +71,6 @@ void Benchmark<T>::record(size_t size, int64_t duration){
 
 template <>
 void Benchmark<int>::run(vector<size_t> sizes, int range_min, int range_max){
-    /*
     for (size_t n : sizes){
         // On reset la seed à chaque tour, pour que les tableaux soient toujours identique
         srand(this->seed);
@@ -108,7 +107,7 @@ void Benchmark<int>::run(vector<size_t> sizes, int range_min, int range_max){
     }
     this->summary["half_sorted"] = this->export_results();
     this->reset_value();
-    */
+    
     cout << "-- Sorted --" << endl;
     for (size_t n : sizes){
         cout << "size: " << n;
