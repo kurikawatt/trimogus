@@ -17,6 +17,8 @@ class Benchmark {
     private:
         int seed;
         void (*sort)(vector<T> &vec);
+
+        nlohmann::json summary;
         
         vector<int64_t> duration = {}; // temps en millisecondes
         vector<long long int> comps = {};
@@ -30,9 +32,11 @@ class Benchmark {
         ~Benchmark();
         void set_seed(int seed);
         void set_sort(void (*sort)(vector<T> &vec));
-        void run(vector<size_t> sizes={100,500,1000,5000,10000,50000,100000,500000,1000000,5000000}, int range_min=-100, int range_max=100);
+        void run(vector<size_t> sizes={500000}, int range_min=-100, int range_max=100);
         void record(size_t size, int64_t duration);
         nlohmann::json export_results();
+        void reset_value();
+        nlohmann::json get_summary();
 
 };
 
@@ -67,6 +71,7 @@ void Benchmark<T>::record(size_t size, int64_t duration){
 
 template <>
 void Benchmark<int>::run(vector<size_t> sizes, int range_min, int range_max){
+    /*
     for (size_t n : sizes){
         // On reset la seed à chaque tour, pour que les tableaux soient toujours identique
         srand(this->seed);
@@ -83,6 +88,59 @@ void Benchmark<int>::run(vector<size_t> sizes, int range_min, int range_max){
         this->record(n, duration);
         
     }
+    this->summary["random"] = this->export_results();
+    this->reset_value();
+
+    for (size_t n : sizes){
+        // On reset la seed à chaque tour, pour que les tableaux soient toujours identique
+        srand(this->seed);
+        // Idem pour les sondes, afin de ne pas fausser les résultats
+        __reset_probes();
+
+        vector<int> vec = random_int_vector_controlled(n, 0.5);
+        auto start_time = high_resolution_clock::now();
+
+        this->sort(vec);
+
+        auto end_time = high_resolution_clock::now();
+        int64_t duration = duration_cast<milliseconds>(end_time - start_time).count();
+        this->record(n, duration);
+    }
+    this->summary["half_sorted"] = this->export_results();
+    this->reset_value();
+    */
+    cout << "-- Sorted --" << endl;
+    for (size_t n : sizes){
+        cout << "size: " << n;
+        // On reset la seed à chaque tour, pour que les tableaux soient toujours identique
+        srand(this->seed);
+        // Idem pour les sondes, afin de ne pas fausser les résultats
+        __reset_probes();
+
+        vector<int> vec = random_int_vector_controlled(n, 0);
+        cout << ", actual vec.size(): " << vec.size() << endl;
+
+        auto start_time = high_resolution_clock::now();
+        cout << "@vec: " << &vec << endl;
+        this->sort(vec);
+
+        auto end_time = high_resolution_clock::now();
+        int64_t duration = duration_cast<milliseconds>(end_time - start_time).count();
+        this->record(n, duration);
+    }
+    this->summary["sorted"] = this->export_results();
+    this->reset_value();
+
+}
+
+template <typename T>
+void Benchmark<T>::reset_value(){
+    this->duration = {}; // temps en millisecondes
+    this->comps = {};
+    this->swaps = {};
+    this->input_bytes_size = {};
+    this->buffers_size = {};
+    this->buffers_bytes_size = {};
 }
 
 template <typename T>
@@ -97,4 +155,9 @@ nlohmann::json Benchmark<T>::export_results(){
     results["buffers"]["bytes_allocated"] = this->buffers_bytes_size;
 
     return results;
+}
+
+template <typename T>
+nlohmann::json Benchmark<T>::get_summary(){
+    return this->summary;
 }

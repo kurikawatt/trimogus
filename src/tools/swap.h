@@ -18,7 +18,7 @@ using namespace std;
  * @ensures la variable globale __SWAP_COUNT__ est incrémentée de 1
  */
 template <typename T> void probed_swap(vector<T> &vec, size_t i, size_t j){
-    if (vec.size() < i || vec.size() < j) return;
+    if (vec.size() - 1 < i || vec.size() < j - 1) return;
     __SWAP_COUNT__++;
     T temp = vec[i];
     vec[i] = vec[j];

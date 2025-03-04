@@ -1,4 +1,5 @@
 #include "generators/numbers.h"
+#include <iostream>
 
 int random_int(int a, int b){
     return rand() % (b - a + 1) + a;
@@ -40,10 +41,10 @@ vector<double> random_double_vector(size_t size, double a, double b){
 }
 
 vector<int> random_int_vector_controlled(size_t size, float proc){
-    vector<int> v;
-	
+    vector<int> v(size);
+
 	for(int i = 0; i < size; i++){
-		v.push_back(i);
+		v[i] = i;
 	}
 
 	//Mélange du tableau selon la probabilité passé en argument
@@ -55,7 +56,7 @@ vector<int> random_int_vector_controlled(size_t size, float proc){
 		}
 	}
 
-	v.shrink_to_fit();
+	//v.shrink_to_fit();
 	return v;
 }
 

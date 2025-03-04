@@ -9,7 +9,7 @@ using namespace std;
 
 template <typename T>
 int partition(vector<T>& arr, int low, int high) {
-  
+
     T pivot = arr[high];
     int i = low - 1;
 
@@ -26,8 +26,7 @@ int partition(vector<T>& arr, int low, int high) {
 
 template <typename T>
 void quick_sort_aux(vector<T>& arr, int low, int high) {
-  
-    if (low < high) {
+    if (low < high && high < arr.size()) {
         int pi = partition(arr, low, high);
         quick_sort_aux(arr, low, pi - 1);
         quick_sort_aux(arr, pi + 1, high);
@@ -36,5 +35,5 @@ void quick_sort_aux(vector<T>& arr, int low, int high) {
 
 template <typename T>
 void quick_sort(vector<T> &vec){
-    quick_sort_aux(vec, 0, vec.size());
+    quick_sort_aux(vec, 0, vec.size()-1);
 }
