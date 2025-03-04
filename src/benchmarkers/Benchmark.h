@@ -32,7 +32,7 @@ class Benchmark {
         ~Benchmark();
         void set_seed(int seed);
         void set_sort(void (*sort)(vector<T> &vec));
-        void run(vector<size_t> sizes={500000}, int range_min=-100, int range_max=100);
+        void run(vector<size_t> sizes={1000,5000,10000,50000,100000,500000,1000000}, int range_min=-1024, int range_max=1024);
         void record(size_t size, int64_t duration);
         nlohmann::json export_results();
         void reset_value();
