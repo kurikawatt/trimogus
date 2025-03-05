@@ -14,18 +14,24 @@ prepare:
 clean:
 	rm -r $(BUILD_DIR)
 
-generators: prepare
-	g++ -I $(SRC_DIR) -c $(SRC_DIR)/generators/*.cpp
-	mv *.o $(BUILD_DIR)/
-
 tools: prepare
 	g++ -I $(SRC_DIR) -c $(SRC_DIR)/tools/*.cpp
 	mv *.o $(BUILD_DIR)/
 
-build: generators tools
+generators: tools prepare
+	g++ -I $(SRC_DIR) -c $(SRC_DIR)/generators/*.cpp
+	mv *.o $(BUILD_DIR)/
+
+sorts: tools prepare
+	g++ -I $(SRC_DIR) -c $(SRC_DIR)/sorts/*.cpp
+	mv *.o $(BUILD_DIR)/
+
+build: sorts generators tools
 	$(COMPILATOR) -I $(SRC_DIR) $(SRC_DIR)/main.cpp $(BUILD_DIR)/*.o -o $(BIN_DIR)/$(BIN_NAME)
 
-build_debug: generators tools
+debug: sorts generators tools
 	$(COMPILATOR) -I $(SRC_DIR) $(SRC_DIR)/main.cpp $(BUILD_DIR)/*.o -o $(BIN_DIR)/$(BIN_NAME)_debug
 
-.PHONY: build build_debug
+# Pour que les règles recompilent à chaque fois, sinon on se retrouver à invoquer
+#								~~ /usr/bin/ld ~~ 
+.PHONY: tools generators sorts build debug
