@@ -18,7 +18,7 @@ unsigned int partition(vector<T> &vec, unsigned int low, unsigned int high);
 
 template <typename T>
 void quicksort(vector<T> &vec){
-    quicksort_aux(vec, 0, vec.size());
+    quicksort_aux(vec, 0, vec.size() - 1);
 }
 
 template <typename T>
