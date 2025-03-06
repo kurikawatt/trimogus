@@ -22,7 +22,7 @@ unsigned int which_bucket(T element, size_t bucket_count, T maximum) {
 template <typename T>
 void buckets_to_vector(const std::vector<std::vector<T>>& buckets, std::vector<T>& vec) {
     size_t i = 0;
-    for (const vector<T> bucket : buckets) {
+    for (const std::vector<T> bucket : buckets) {
         for (const T v : bucket) {
             vec[i++] = v;
         }
@@ -45,7 +45,7 @@ void bucketsort(std::vector<T>& vec, unsigned int bucket_count, void (*sort)(std
         unsigned int i = which_bucket(e, bucket_count, maximum);
         buckets[i].push_back(e);
     }
-    for (vector<T> bucket : buckets) {
+    for (std::vector<T> bucket : buckets) {
         sort(bucket);
     }
     buckets_to_vector(buckets, vec);
