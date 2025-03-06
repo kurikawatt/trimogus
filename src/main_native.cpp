@@ -21,20 +21,20 @@ int main(int argc, char *argv[]){
 
     srand(SEED);
 
-    vector<void (*)(vector<int>&)> sorts = {tim_sort<int>, topdown_mergesort<int>, bottomup_mergesort<int>};
-    vector<string> sorts_names = {"timsort", "tp_mergesort", "bu_mergesort"};
+    vector<void (*)(vector<int>&)> sorts = {selection_sort<int>, insertion_sort<int>, bubblesort<int>, tim_sort<int>, topdown_mergesort<int>, bottomup_mergesort<int>};
+    vector<string> sorts_names = {"selection", "insertion", "bubblesort", "timsort", "tp_mergesort", "bu_mergesort"};
 
-    omp_set_num_threads(3);
+    omp_set_num_threads(6);
 
-    vector<int> vec = random_int_vector(50000000, -2048, 2048);
+    vector<int> vec = random_int_vector(50000, -2048, 2048);
 
     #pragma omp parallel
     {
         int tid = omp_get_thread_num();
         vector<int> v(vec);
-        cout << "Thread " << tid << " will run " << sorts_names[tid] << endl;
+        //cout << "Thread " << tid << " will run " << sorts_names[tid] << endl;
         sorts[tid](v);
-        cout << "Thread " << tid << " sort is : " << is_vector_sorted(v) << endl;
+        //cout << "Thread " << tid << " sort is : " << is_vector_sorted(v) << endl;
     }
 
     return 0;

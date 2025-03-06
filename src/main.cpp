@@ -20,16 +20,16 @@ int main(int argc, char *argv[]){
 
     srand(SEED);
 
-    vector<void (*)(vector<int>&)> sorts = {tim_sort<int>, topdown_mergesort<int>, bottomup_mergesort<int>};
-    vector<string> sorts_names = {"timsort", "tp_mergesort", "bu_mergesort"};
+    vector<void (*)(vector<int>&)> sorts = {selection_sort<int>, insertion_sort<int>, bubblesort<int>, tim_sort<int>, topdown_mergesort<int>, bottomup_mergesort<int>};
+    vector<string> sorts_names = {"selection", "insertion", "bubblesort", "timsort", "tp_mergesort", "bu_mergesort"};
 
-    vector<int> vec = random_int_vector(50000000, -2048, 2048);
+    vector<int> vec = random_int_vector(50000, -2048, 2048);
 
     for (int i = 0; i < sorts.size(); i++){
         vector<int> v(vec);
-        cout << "Running " << sorts_names[i] << endl;
+        //cout << "Running " << sorts_names[i] << endl;
         sorts[i](v);
-        cout << "And is it correct ?" << is_vector_sorted(v) << endl;
+        //cout << "And is it correct ?" << is_vector_sorted(v) << endl;
     }
 
     return 0;
