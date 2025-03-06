@@ -20,6 +20,7 @@
 #include "sorts/topdown_mergesort.h"
 #include "sorts/bottomup_mergesort.h"
 #include "sorts/timsort.h"
+#include "sorts/bucketsort.hpp"
 
 inline std::map<std::string, void (*)(vector<int>&)> SORTS_FUNCTIONS = {
     {"tim_sort", tim_sort<int>},
