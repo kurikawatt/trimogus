@@ -32,7 +32,7 @@ build: sorts generators tools
 	$(COMPILATOR) -I $(SRC_DIR) $(SRC_DIR)/main.cpp $(BUILD_DIR)/*.o -o $(BIN_DIR)/$(BIN_NAME) $(C_FLAGS)
 
 native:
-	$(COMPILATOR) -I $(SRC_DIR) $(SRC_DIR)/main.cpp $(BUILD_DIR)/*.o -o $(BIN_DIR)/$(BIN_NAME)_native $(C_FLAGS) -march=native
+	$(COMPILATOR) -I $(SRC_DIR) $(SRC_DIR)/main_native.cpp $(BUILD_DIR)/*.o -o $(BIN_DIR)/$(BIN_NAME)_native $(C_FLAGS) -march=native -fopenmp
 
 debug: sorts generators tools
 	$(COMPILATOR) -I $(SRC_DIR) $(SRC_DIR)/main.cpp $(BUILD_DIR)/*.o -o $(BIN_DIR)/$(BIN_NAME)_debug $(C_FLAGS)
